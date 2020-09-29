@@ -1,11 +1,13 @@
 ﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
 {
-    public static class IServiceCollectionCosmosDbExtensions
+    public static class IServiceCollectionExtensions
     {
         /// <summary>
         ///     Register a singleton instance of Cosmos Db Container Factory, which is a wrapper for the CosmosClient.
@@ -24,9 +26,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
         {
             Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(endpointUrl, primaryKey);
             var cosmosDbClientFactory = new CosmosDbContainerFactory(client, databaseName, containers);
-
-            // Ensure CosmosDB is created
-            cosmosDbClientFactory.EnsureDbSetupAsync().Wait();
 
             services.AddSingleton<ICosmosDbContainerFactory>(cosmosDbClientFactory);
 

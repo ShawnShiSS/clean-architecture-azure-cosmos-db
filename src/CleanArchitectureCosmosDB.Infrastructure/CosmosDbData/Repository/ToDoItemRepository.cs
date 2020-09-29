@@ -13,7 +13,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <summary>
         ///     CosmosDB container name
         /// </summary>
-        public override string ContainerName { get; } = "todos";
+        public override string ContainerName { get; } = "Todo";
 
         /// <summary>
         ///     Generate Id.

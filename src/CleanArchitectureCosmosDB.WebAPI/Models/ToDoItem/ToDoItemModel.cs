@@ -1,12 +1,19 @@
-﻿using CleanArchitectureCosmosDB.Core.Entities.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CleanArchitectureCosmosDB.Core.Entities
+namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
 {
-    public class ToDoItem : BaseEntity
+    /// <summary>
+    ///     ToDoItem Api Model
+    /// </summary>
+    public class ToDoItemModel
     {
+        /// <summary>
+        ///     ToDoItem Id
+        /// </summary>
+        public string Id { get; set; }
         /// <summary>
         ///     Category which the To-Do-Item belongs to
         /// </summary>
@@ -15,21 +22,10 @@ namespace CleanArchitectureCosmosDB.Core.Entities
         ///     Title of the To-Do-Item
         /// </summary>
         public string Title { get; set; }
-        
+
         /// <summary>
         ///     Whether the To-Do-Item is done
         /// </summary>
         public bool IsCompleted { get; private set; }
-
-        public void MarkComplete()
-        {
-            IsCompleted = true;
-        }
-
-        public override string ToString()
-        {
-            string status = IsCompleted ? "Done!" : "Not done.";
-            return $"{Id}: Status: {status} - {Title}";
-        }
     }
 }
