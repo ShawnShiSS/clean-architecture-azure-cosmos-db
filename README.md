@@ -14,7 +14,7 @@ The primary goal of the project is to provide a basic solution structure for any
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
 
-**Please watch for this repository to get notification when I updates to the repo.**
+**Please watch for this repository to get notification when I make updates to the repo.**
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
