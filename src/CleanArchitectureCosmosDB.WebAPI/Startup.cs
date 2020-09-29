@@ -69,7 +69,12 @@ namespace CleanArchitectureCosmosDB.WebAPI
                         // handle exceptions thrown by an action
                         options.Filters.Add(new ApiExceptionFilterAttribute()))
                     .AddNewtonsoftJson()
-                    .AddFluentValidation();
+                    .AddFluentValidation()
+                    .AddMvcOptions(options => {
+                        // Clear the default MVC model validations, as we are registering all model validators using FluentValidation
+                        options.ModelMetadataDetailsProviders.Clear();
+                        options.ModelValidatorProviders.Clear();
+                    });
 
             // swagger
             services.AddSwaggerGen(options =>
