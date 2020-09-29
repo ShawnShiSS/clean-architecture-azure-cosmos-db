@@ -50,7 +50,6 @@ namespace CleanArchitectureCosmosDB.WebAPI
             // MediatR, this will scan and register everything that inherits IRequest, IPipelineBehavior
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.Behaviours.ValidationBehaviour<,>));
-            // TODO (SS) : consider adding exception details to the handler response when env=dev
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.ApiExceptions.UnhandledExceptionBehaviour<,>));
             // Fluent Validation, this will scan and register everything that inherits FluentValidation.AbstractValidator
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
