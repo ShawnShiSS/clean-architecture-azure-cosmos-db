@@ -8,7 +8,13 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 # Goals
 The primary goal of the project is to provide a basic solution structure for anyone who is building a new ASP.NET Core web or API project using Cosmos DB.
 
-**Please watch for this repository to get notification when I publish the repo.**
+# Getting Started
+1. Download the Azure CosmosDB emulator in order to run the API project locally. Here is a download link: https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-release-notes#download.
+2. Start the emulator
+3. Set the API project as your Startup project in Visual Studio
+4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
+
+**Please watch for this repository to get notification when I updates to the repo.**
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
