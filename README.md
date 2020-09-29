@@ -20,11 +20,12 @@ The primary goal of the project is to provide a basic solution structure for any
 # Features supported
 * ASP.NET Core 3.1
 * Azure Cosmos DB .NET SDK V3
+* REST API
 * Repository Design Pattern
 * Partition Key
-* REST API
 * Swagger UI
 * OData support
+* Non-distributed in-memory cache
 * Serilog for structured logging
 * MediatR Command/Query pattern
 * MediatR pipeline behaviour for exception handling 
