@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config
+namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions
 {
     public class CosmosDbConfig
     {

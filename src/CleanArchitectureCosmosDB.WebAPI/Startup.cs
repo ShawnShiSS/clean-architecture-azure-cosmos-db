@@ -1,7 +1,7 @@
 using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
-using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;

@@ -1,4 +1,4 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
+﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Azure.Cosmos;
 using System;

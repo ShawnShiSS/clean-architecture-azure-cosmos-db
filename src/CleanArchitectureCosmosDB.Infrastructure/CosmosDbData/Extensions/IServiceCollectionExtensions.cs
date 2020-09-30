@@ -1,9 +1,7 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
+﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
 {
