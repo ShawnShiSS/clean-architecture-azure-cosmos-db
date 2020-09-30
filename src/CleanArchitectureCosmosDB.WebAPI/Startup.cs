@@ -1,22 +1,27 @@
+using AutoMapper;
+using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
+using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
+using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using MediatR;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using CleanArchitectureCosmosDB.Core.Interfaces;
-using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Config;
-using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
-using AutoMapper;
-using System.Reflection;
-using MediatR;
-using FluentValidation;
-using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
-using FluentValidation.AspNetCore;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
-using System.IO;
 using System;
-using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Extensions;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace CleanArchitectureCosmosDB.WebAPI
 {
@@ -63,6 +68,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
                                  cosmosDbConfig.Containers);
             services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
 
+            // Non-distributed in-memory cache services
+            services.AddMemoryCache();
+            services.AddScoped<ICachedToDoItemsService, InMemoryCachedToDoItemsService>();
+
+
             // API controllers
             services.AddControllers(options =>
                         // handle exceptions thrown by an action
@@ -87,6 +97,22 @@ namespace CleanArchitectureCosmosDB.WebAPI
                 // Set xml path
                 options.IncludeXmlComments(xmlPath);
             });
+
+            // OData Support
+            services.AddOData();
+            // In order to make swagger work with OData
+            services.AddMvcCore(options =>
+            {
+                foreach (var outputFormatter in options.OutputFormatters.OfType<OutputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                {
+                    outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+
+                foreach (var inputFormatter in options.InputFormatters.OfType<InputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                {
+                    inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+            });
         }
 
         /// <summary>
@@ -102,6 +128,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
 
                 // create CosmosDB database
                 app.EnsureCosmosDbIsCreated();
+                app.SeedToDoContainerIfEmptyAsync().Wait();
             }
 
             // Swagger UI page at /swagger
@@ -117,9 +144,13 @@ namespace CleanArchitectureCosmosDB.WebAPI
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpointRouteBuilder =>
             {
-                endpoints.MapControllers();
+                endpointRouteBuilder.MapControllers();
+
+                // OData configuration
+                endpointRouteBuilder.EnableDependencyInjection();
+                endpointRouteBuilder.Filter().Select().Count().OrderBy();
             });
         }
     }

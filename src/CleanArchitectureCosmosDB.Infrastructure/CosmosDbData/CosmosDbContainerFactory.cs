@@ -14,6 +14,12 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData
         private readonly string _databaseName;
         private readonly List<ContainerInfo> _containers;
 
+        /// <summary>
+        ///     Ctor
+        /// </summary>
+        /// <param name="cosmosClient"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="containers"></param>
         public CosmosDbContainerFactory(CosmosClient cosmosClient,
                                    string databaseName,
                                    List<ContainerInfo> containers)

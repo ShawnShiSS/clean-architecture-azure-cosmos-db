@@ -1,5 +1,6 @@
 ﻿using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
 using MediatR;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,13 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         }
 
         // GET: api/ToDoItem
+        // OData: https://localhost:5001/api/ToDoItem?$select=title
         /// <summary>
         ///     Get all
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [EnableQuery()]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {
             var response = await _mediator.Send(new GetAll.GetAllQuery());

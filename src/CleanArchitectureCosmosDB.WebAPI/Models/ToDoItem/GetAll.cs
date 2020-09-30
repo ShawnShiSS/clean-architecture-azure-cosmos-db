@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
 using FluentValidation;
 using MediatR;
 using System;
@@ -44,8 +45,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// </summary>
             public GetAllToDoItemQueryValidator()
             {
-                //RuleFor(x => x.Id)
-                //    .NotEmpty();
+                
             }
 
         }
@@ -57,17 +57,21 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         {
             private readonly IToDoItemRepository _repo;
             private readonly IMapper _mapper;
+            private readonly ICachedToDoItemsService _cachedToDoItemsService;
 
             /// <summary>
             ///     Ctor
             /// </summary>
             /// <param name="repo"></param>
             /// <param name="mapper"></param>
+            /// <param name="cachedToDoItemsService"></param>
             public QueryHandler(IToDoItemRepository repo,
-                                  IMapper mapper)
+                                IMapper mapper,
+                                ICachedToDoItemsService cachedToDoItemsService)
             {
                 this._repo = repo ?? throw new ArgumentNullException(nameof(repo));
                 this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+                this._cachedToDoItemsService = cachedToDoItemsService ?? throw new ArgumentNullException(nameof(cachedToDoItemsService));
             }
 
             /// <summary>
@@ -80,8 +84,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             {
                 QueryResponse response = new QueryResponse();
 
-                var entities = await _repo.GetItemsAsync($"SELECT * FROM c");
+                // If needed, this is where to implement cache reading and setting logic 
+                //var cachedEntities = await _cachedToDoItemsService.GetCachedToDoItemsAsync();
 
+                var entities = await _repo.GetItemsAsync($"SELECT * FROM c");
                 response.Resource = entities.Select(x => _mapper.Map<ToDoItemModel>(x));
 
                 return response;

@@ -14,6 +14,7 @@
     <PackageReference Include="MediatR" Version="8.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
@@ -29,6 +30,10 @@
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitectureCosmosDB.Core\CleanArchitectureCosmosDB.Core.csproj" />
     <ProjectReference Include="..\CleanArchitectureCosmosDB.Infrastructure\CleanArchitectureCosmosDB.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Extensions\" />
   </ItemGroup>
 
 
