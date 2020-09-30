@@ -1,4 +1,4 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions;
+﻿using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;

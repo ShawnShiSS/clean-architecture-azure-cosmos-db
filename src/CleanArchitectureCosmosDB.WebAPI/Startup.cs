@@ -1,7 +1,6 @@
 using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
-using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
-using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions;
+using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
@@ -60,7 +59,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Bind database-related bindings
-            var cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbConfig>();
+            var cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  cosmosDbConfig.PrimaryKey,

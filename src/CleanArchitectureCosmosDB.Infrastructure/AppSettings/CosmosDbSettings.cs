@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions
+namespace CleanArchitectureCosmosDB.Infrastructure.AppSettings
 {
-    public class CosmosDbConfig
+    public class CosmosDbSettings
     {
         /// <summary>
         ///     CosmosDb Account - The Azure Cosmos DB endpoint
@@ -23,11 +21,12 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.ConfigOptions
         ///     List of containers in the database
         /// </summary>
         public List<ContainerInfo> Containers { get; set; }
+                
     }
-
     public class ContainerInfo
     {
         public string Name { get; set; }
         public string PartitionKey { get; set; }
     }
+
 }

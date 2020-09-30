@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
-using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
 using FluentValidation;
 using MediatR;
 using System;

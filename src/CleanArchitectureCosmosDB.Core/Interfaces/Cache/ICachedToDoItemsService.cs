@@ -1,7 +1,7 @@
 ﻿using CleanArchitectureCosmosDB.Core.Entities;
 using System.Collections.Generic;
 
-namespace CleanArchitectureCosmosDB.Core.Interfaces.Cache
+namespace CleanArchitectureCosmosDB.Core.Interfaces
 {
     public interface ICachedToDoItemsService
     {

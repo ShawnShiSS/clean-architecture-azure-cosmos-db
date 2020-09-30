@@ -1,11 +1,9 @@
 ﻿using CleanArchitectureCosmosDB.Core.Entities;
-using CleanArchitectureCosmosDB.Core.Interfaces.Cache;
+using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Infrastructure.Extensions;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services
 {
