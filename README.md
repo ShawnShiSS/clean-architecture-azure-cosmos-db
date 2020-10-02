@@ -34,6 +34,8 @@ The primary goal of the project is to provide a basic solution structure for any
 * Database initial creation
 * Sample data seeding
 * Email Sender (TODO)
+* ASP.NET Core Identity  (TODO)
+* Identity Service (TODO)
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
