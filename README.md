@@ -11,6 +11,8 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 The primary goal of the project is to provide a basic solution structure for anyone who is building a new ASP.NET Core web or API project using Cosmos DB.
 **Please watch for this repository to get notification when I make updates to the repo.**
 
+**For a detailed discussion, please see my recent article, Clean Architecture — ASP.NET Core API using Partitioned Repository Pattern and Azure Cosmos DB** (link: https://medium.com/swlh/clean-architecture-with-partitioned-repository-pattern-using-azure-cosmos-db-62241854cbc5)
+
 # Getting Started
 1. Download the Azure CosmosDB emulator in order to run the API project locally. Here is a download link: https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-release-notes#download.
 2. Start the emulator
