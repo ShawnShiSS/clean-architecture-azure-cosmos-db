@@ -35,7 +35,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * AutoMapper to mapping
 * Database initial creation
 * Sample data seeding
-* Email Sender (TODO)
+* Email Sender using SendGrid 
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * LINQ support vs CosmosDB Client(TODO)
