@@ -39,6 +39,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * LINQ support vs CosmosDB Client(TODO)
+* Search by Specification Pattern vs query string (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
 
