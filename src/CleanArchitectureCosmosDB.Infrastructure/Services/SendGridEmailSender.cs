@@ -35,7 +35,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Services
         /// <param name="sendGridEmailSettings"></param>
         public SendGridEmailSender(IOptions<SendGridEmailSettings> sendGridEmailSettings)
         {
-            _sendGridEmailSettings = sendGridEmailSettings.Value ?? throw new ArgumentNullException(nameof(sendGridEmailSettings));.
+            _sendGridEmailSettings = sendGridEmailSettings.Value ?? throw new ArgumentNullException(nameof(sendGridEmailSettings));
             _sendGridClient = new SendGridClient(_sendGridEmailSettings.SendGridApiKey);
 
         }
