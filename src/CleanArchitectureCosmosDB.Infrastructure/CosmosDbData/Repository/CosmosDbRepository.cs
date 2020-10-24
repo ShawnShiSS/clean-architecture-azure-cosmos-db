@@ -1,7 +1,10 @@
-﻿using CleanArchitectureCosmosDB.Core.Entities.Base;
+﻿using Ardalis.Specification;
+using CleanArchitectureCosmosDB.Core.Entities.Base;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Specifications.Base;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,9 +83,39 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             return results;
         }
 
+        /// <inheritdoc cref="IRepository{T}.GetItemsAsync(Ardalis.Specification.ISpecification{T})"/>
+        public async Task<IEnumerable<T>> GetItemsAsync(ISpecification<T> specification)
+        {
+            var queryable = ApplySpecification(specification);
+            var iterator = queryable.ToFeedIterator<T>();
+
+            List<T> results = new List<T>();
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+
+                results.AddRange(response.ToList());
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        ///     Evaluate specification and return IQueryable
+        /// </summary>
+        /// <param name="specification"></param>
+        /// <returns></returns>
+        private IQueryable<T> ApplySpecification(ISpecification<T> specification)
+        {
+            var evaluator = new CosmosDbSpecificationEvaluator<T>();
+            return evaluator.GetQuery(_container.GetItemLinqQueryable<T>(), specification);
+        }
+
         public async Task UpdateItemAsync(string id, T item)
         {
             await this._container.UpsertItemAsync<T>(item, ResolvePartitionKey(id));
         }
+
+
     }
 }
