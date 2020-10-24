@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Specifications;
 using FluentValidation;
 using MediatR;
 using System;
@@ -86,7 +87,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
                 // If needed, this is where to implement cache reading and setting logic 
                 //var cachedEntities = await _cachedToDoItemsService.GetCachedToDoItemsAsync();
 
-                var entities = await _repo.GetItemsAsync($"SELECT * FROM c");
+                //var entities = await _repo.GetItemsAsync($"SELECT * FROM c");
+                // Get all the incompleted todo items
+                var specification = new ToDoItemSearchSpecification(false);
+                var entities = await _repo.GetItemsAsync(specification);
                 response.Resource = entities.Select(x => _mapper.Map<ToDoItemModel>(x));
 
                 return response;
