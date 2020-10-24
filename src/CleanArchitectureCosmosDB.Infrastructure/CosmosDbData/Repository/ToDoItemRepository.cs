@@ -5,6 +5,7 @@ using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
 {
@@ -33,6 +34,40 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         public ToDoItemRepository(ICosmosDbContainerFactory factory) : base(factory)
         { }
 
+        // For demonstration purpose and try to use better alternatives in production if possible.
+        // Just an example of how to use Cosmos DB Parameterized Query to avoid SQL Injection.
+        // Get by Category is also an example of single partition read, where get by title will be a cross partition read
+        public async Task<IEnumerable<ToDoItem>> GetItemsAsyncByCategory(string category)
+        {
+            List<ToDoItem> results = new List<ToDoItem>();
+            string query = @$"SELECT c.Name FROM c 
+                                    WHERE c.Category = @Category";
 
+            QueryDefinition queryDefinition = new QueryDefinition(query)
+                                                    .WithParameter("@Category", category);
+            string queryString = queryDefinition.ToString();
+
+            var entities = await this.GetItemsAsync(queryString);
+
+            return results;
+        }
+
+        // For demonstration purpose and try to use better alternatives in production if possible.
+        // Just an example of how to use Cosmos DB Parameterized Query to avoid SQL Injection.
+        // Get by Title is also an example of cross partition read, where Get by Category will be single partition read
+        public async Task<IEnumerable<ToDoItem>> GetItemsAsyncByTitle(string title)
+        {
+            List<ToDoItem> results = new List<ToDoItem>();
+            string query = @$"SELECT c.Name FROM c 
+                                    WHERE c.Title = @Title";
+
+            QueryDefinition queryDefinition = new QueryDefinition(query)
+                                                    .WithParameter("@Title", title);
+            string queryString = queryDefinition.ToString();
+
+            var entities = await this.GetItemsAsync(queryString);
+
+            return results;
+        }
     }
 }
