@@ -36,10 +36,13 @@ The primary goal of the project is to provide a basic solution structure for any
 * Database initial creation
 * Sample data seeding
 * Email Sender using SendGrid 
+* Cosmos DB Point read using partition key and ID
+* Cosmos DB CRUD
+* Search data using SQL query directly in Cosmos DB
+* Search data using LINQ and IQuerable in Cosmos DB
+* Search data using Specification Pattern in Cosmos DB
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
-* LINQ support vs CosmosDB Client(TODO)
-* Search by Specification Pattern vs query string (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
 
