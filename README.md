@@ -36,8 +36,8 @@ The primary goal of the project is to provide a basic solution structure for any
 * Database initial creation
 * Sample data seeding
 * Email Sender using SendGrid 
+* CRUD endpoints using Cosmos DB
 * Cosmos DB Point read using partition key and ID
-* Cosmos DB CRUD
 * Search data using SQL query directly in Cosmos DB (demonstration purpose, not recommended in production)
 * Search data using Parameterized Query in Cosmos DB
 * Search data using LINQ and IQueryable in Cosmos DB
