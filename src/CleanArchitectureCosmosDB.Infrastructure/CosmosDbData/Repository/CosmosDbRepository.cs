@@ -65,10 +65,11 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             }
         }
 
-        // For demonstration purpose and try to use better alternatives in production if possible.
-        // This shows how to use SQL string to read data from Cosmos DB, but should not be used in production.
+        // Search data using SQL query string
+        // This shows how to use SQL string to read data from Cosmos DB for demonstration purpose.
+        // For production, try to use safer alternatives like Parameterized Query and LINQ if possible.
         // Using string can expose SQL Injection vulnerability, e.g. select * from c where c.id=1 OR 1=1. 
-        // String is also be hard to work with due to things like special characters and spaces when advanced querying like search and pagination is required.
+        // String can also be hard to work with due to special characters and spaces when advanced querying like search and pagination is required.
         public async Task<IEnumerable<T>> GetItemsAsync(string queryString)
         {
             var query = _container.GetItemQueryIterator<T>(new QueryDefinition(queryString));

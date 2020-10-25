@@ -11,7 +11,7 @@ namespace CleanArchitectureCosmosDB.Core.Interfaces
     {
         /// <summary>
         ///     Get items given a string SQL query directly.
-        ///     Likely in production, you will use alternatives like Parameterized Query or LINQ to avoid SQL Injection and avoid having to work with strings directly.
+        ///     Likely in production, you may want to use alternatives like Parameterized Query or LINQ to avoid SQL Injection and avoid having to work with strings directly.
         ///     This is kept here for demonstration purpose.
         /// </summary>
         /// <param name="query"></param>
