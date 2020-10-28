@@ -4,7 +4,7 @@
     {
         public static string GenerateToDoItemsCacheKey()
         {
-            return "todoitems:";
+            return "todoitems";
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services
 {
     /// <summary>
-    ///     Non-distributed cache
+    ///     Non-distributed in memory cache.
     /// </summary>
     public class InMemoryCachedToDoItemsService : ICachedToDoItemsService
     {
@@ -29,7 +29,6 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services
         /// <returns></returns>
         public void DeleteCachedToDoItems()
         {
-            // TODO : when deleting an ToDoItem, trigger an event to remove cached item.
             _cache.Remove(CacheHelpers.GenerateToDoItemsCacheKey());
         }
 
