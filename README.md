@@ -36,16 +36,17 @@ The primary goal of the project is to provide a basic solution structure for any
 * Database initial creation
 * Sample data seeding
 * Email Sender using SendGrid 
+* CRUD endpoints using Cosmos DB
 * Cosmos DB Point read using partition key and ID
-* Cosmos DB CRUD
-* Search data using SQL query directly in Cosmos DB (demonstration purpose, not recommended in production)
-* Search data using Parameterized Query in Cosmos DB
-* Search data using LINQ and IQueryable in Cosmos DB
-* Search data using Specification Pattern in Cosmos DB
+* Search data in Cosmos DB using SQL query directly (demonstration purpose, not recommended in production)
+* Search data in Cosmos DB using Parameterized Query
+* Search data in Cosmos DB using LINQ and IQueryable
+* Search data in Cosmos DB using Specification Pattern to abstract out query-specific logic
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Data Modeling and Partitioning patterns (TODO)
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
