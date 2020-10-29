@@ -72,11 +72,11 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         // String can also be hard to work with due to special characters and spaces when advanced querying like search and pagination is required.
         public async Task<IEnumerable<T>> GetItemsAsync(string queryString)
         {
-            var query = _container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
+            var resultSetIterator = _container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
             List<T> results = new List<T>();
-            while (query.HasMoreResults)
+            while (resultSetIterator.HasMoreResults)
             {
-                var response = await query.ReadNextAsync();
+                var response = await resultSetIterator.ReadNextAsync();
 
                 results.AddRange(response.ToList());
             }
