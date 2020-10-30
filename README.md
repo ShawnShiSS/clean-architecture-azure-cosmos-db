@@ -8,9 +8,7 @@ Clean Architecture is promoted by Microsoft on their .NET application architectu
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
 
 # Give a star
-:star: 
-
-If you enjoy this project, or are using this project to explore, or use this project to kick start your next project, please give a star to support it! 
+:star: If you enjoy this project, or are using this project to kick start your next project, please give a star to support it. Thanks! :star: 
 
 :star: 
 
