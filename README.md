@@ -41,6 +41,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * Email Sender using SendGrid 
 * CRUD endpoints using Cosmos DB
 * Cosmos DB Point read using partition key and ID
+* Data Modeling and Partitioning patterns
 * Search data in Cosmos DB using SQL query directly (demonstration purpose, not recommended in production)
 * Search data in Cosmos DB using Parameterized Query
 * Search data in Cosmos DB using LINQ and IQueryable
@@ -49,7 +50,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* Data Modeling and Partitioning patterns (TODO)
+* ... TODOs
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
