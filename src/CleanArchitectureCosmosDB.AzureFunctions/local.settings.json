@@ -1,7 +1,12 @@
 {
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-    }
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  },
+  "SendGridEmailSettings": {
+    "FromEmail": "noreply@noreply.com",
+    "FromName": "NoReply",
+    "SendGridApiKey": "YourSendGridKeyXXXXXXXXXXYYYYYYYYZZZZZZZZZZZZZZS"
+  }
 }
