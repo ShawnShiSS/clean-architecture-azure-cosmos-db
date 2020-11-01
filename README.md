@@ -47,11 +47,14 @@ The primary goal of the project is to provide a basic solution structure for any
 * Search data in Cosmos DB using Parameterized Query
 * Search data in Cosmos DB using LINQ and IQueryable
 * Search data in Cosmos DB using Specification Pattern to abstract out query-specific logic
+
+# New Features Under Development
+* Azure Functions project (TODO)
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* ... TODOs
+* other TODOs
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
