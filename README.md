@@ -26,7 +26,8 @@ The primary goal of the project is to provide a basic solution structure for any
 * ASP.NET Core 3.1
 * Azure Cosmos DB .NET SDK V3
 * Repository Design Pattern
-* Partition Key
+* Horizontal Partitioning
+* Partition Key Design
 * REST API
 * Swagger UI
 * OData support
@@ -36,12 +37,12 @@ The primary goal of the project is to provide a basic solution structure for any
 * MediatR pipeline behaviour for exception handling 
 * FluentValidation for validation
 * AutoMapper to mapping
-* Database initial creation
-* Sample data seeding
 * Email Sender using SendGrid 
+* Cosmos DB Database initial creation
+* Cosmos DB initial sample data seeding
 * CRUD endpoints using Cosmos DB
-* Cosmos DB Point read using partition key and ID
-* Data Modeling and Partitioning patterns
+* Cosmos DB point-read using partition key and ID
+* Cosmos DB single-partition read and cross-partition read
 * Search data in Cosmos DB using SQL query directly (demonstration purpose, not recommended in production)
 * Search data in Cosmos DB using Parameterized Query
 * Search data in Cosmos DB using LINQ and IQueryable
