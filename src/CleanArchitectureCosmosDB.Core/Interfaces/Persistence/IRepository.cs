@@ -1,8 +1,6 @@
 ﻿using Ardalis.Specification;
 using CleanArchitectureCosmosDB.Core.Entities.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.Core.Interfaces

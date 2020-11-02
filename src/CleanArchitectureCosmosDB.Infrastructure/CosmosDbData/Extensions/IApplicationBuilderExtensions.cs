@@ -53,6 +53,11 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
                         Category = "Grocery",
                         Title = "Get more milk"
                     };
+                    ToDoItem beer = new ToDoItem()
+                    {
+                        Category = "Grocery",
+                        Title = "Get 7 beers"
+                    };
                     ToDoItem laundry = new ToDoItem()
                     {
                         Category = "Household",

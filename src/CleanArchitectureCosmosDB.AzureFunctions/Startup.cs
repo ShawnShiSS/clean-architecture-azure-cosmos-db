@@ -1,5 +1,7 @@
 ﻿using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
 using CleanArchitectureCosmosDB.Infrastructure.Services;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -47,6 +49,15 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
 
             //Register SendGrid Email
             services.AddScoped<IEmailService, SendGridEmailService>();
+
+            // Bind database-related bindings
+            var cosmosDbConfig = configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
+            // register CosmosDB client and data repositories
+            services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
+                                 cosmosDbConfig.PrimaryKey,
+                                 cosmosDbConfig.DatabaseName,
+                                 cosmosDbConfig.Containers);
+            services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
 
         }
     }
