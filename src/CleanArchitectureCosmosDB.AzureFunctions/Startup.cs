@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.IO;
 
+// add the FunctionsStartup assembly attribute that specifies the type name used during startup
 [assembly: FunctionsStartup(typeof(CleanArchitectureCosmosDB.AzureFunctions.Startup))]
 
 namespace CleanArchitectureCosmosDB.AzureFunctions
@@ -22,14 +23,16 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Configurations
+            // Configurations
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"local.settings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
+
             // Use a singleton Configuration throughout the application
             services.AddSingleton<IConfiguration>(configuration);
+
             // Singleton instance. See example usage in SendGridEmailService: inject IOptions<SendGridEmailSettings> in SendGridEmailService constructor
             services.Configure<SendGridEmailSettings>(configuration.GetSection("SendGridEmailSettings"));
 
