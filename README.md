@@ -60,6 +60,13 @@ The primary goal of the project is to provide a basic solution structure for any
 * Cosmos DB Stored Procedure for Transaction (TODO)
 * other TODOs
 
+# Additional Resources
+I have published some short articles to cover different aspects of this project. Please feel free to give them a read.
+* [Clean Architecture — ASP.NET Core API using Partitioned Repository Pattern and Azure Cosmos DB ](https://medium.com/swlh/clean-architecture-with-partitioned-repository-pattern-using-azure-cosmos-db-62241854cbc5)
+* [Clean Architecture — ASP.NET Core API Starter Project using In-memory Cache Service](https://shawn-shi.medium.com/clean-architecture-using-in-memory-cache-service-ab376fe226eb)
+* [Clean Architecture — ASP.NET Core REST API with OData and Swagger UI](https://shawn-shi.medium.com/clean-architecture-rest-api-with-odata-and-swagger-ui-406f7df896c)
+* [Azure Cosmos DB — SQL Injection Attack and Defense](https://medium.com/swlh/azure-cosmos-db-sql-injection-attack-and-defense-17b32ef95b9)
+
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
 
