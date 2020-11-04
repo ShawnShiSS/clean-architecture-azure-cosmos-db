@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using CleanArchitectureCosmosDB.Core.Entities;
 using CleanArchitectureCosmosDB.Core.Entities.Base;
 using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Core.Specifications.Base;
@@ -33,12 +34,31 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <returns></returns>
         public abstract PartitionKey ResolvePartitionKey(string entityId);
 
+        /// <summary>
+        ///     Generate id for the audit record
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual string GenerateAuditId(Audit entity) => $"{entity.EntityId}:{Guid.NewGuid()}";
+
+        /// <summary>
+        ///     Resolve the partition key for the audit record
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
+        public virtual PartitionKey ResolveAuditPartitionKey(string entityId) => new PartitionKey($"{entityId.Split(':')[0]}:{entityId.Split(':')[1]}");
+
+
         private readonly ICosmosDbContainerFactory _cosmosDbContainerFactory;
         private readonly Microsoft.Azure.Cosmos.Container _container;
+        private readonly Microsoft.Azure.Cosmos.Container _auditContainer;
+
         public CosmosDbRepository(ICosmosDbContainerFactory cosmosDbContainerFactory)
         {
             this._cosmosDbContainerFactory = cosmosDbContainerFactory ?? throw new ArgumentNullException(nameof(ICosmosDbContainerFactory));
             this._container = this._cosmosDbContainerFactory.GetContainer(ContainerName)._container;
+            this._auditContainer = this._cosmosDbContainerFactory.GetContainer("Audit")._container;
+
         }
 
         public async Task AddItemAsync(T item)
@@ -101,6 +121,14 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             return results;
         }
 
+        public async Task UpdateItemAsync(string id, T item)
+        {
+            // Audit
+            await Audit(item);
+            // Update
+            await this._container.UpsertItemAsync<T>(item, ResolvePartitionKey(id));
+        }
+
         /// <summary>
         ///     Evaluate specification and return IQueryable
         /// </summary>
@@ -112,9 +140,18 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             return evaluator.GetQuery(_container.GetItemLinqQueryable<T>(), specification);
         }
 
-        public async Task UpdateItemAsync(string id, T item)
+        /// <summary>
+        ///     Audit a item by adding it to the audit container
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private async Task Audit(T item)
         {
-            await this._container.UpsertItemAsync<T>(item, ResolvePartitionKey(id));
+            var auditItem = new Core.Entities.Audit(item.GetType().Name,
+                                                    item.Id,
+                                                    Newtonsoft.Json.JsonConvert.SerializeObject(item));
+            auditItem.Id = GenerateAuditId(auditItem);
+            await _auditContainer.CreateItemAsync<Audit>(auditItem, ResolveAuditPartitionKey(auditItem.Id));
         }
 
 
