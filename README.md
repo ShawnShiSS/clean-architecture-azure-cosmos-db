@@ -65,6 +65,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* SPA Client Application using React + Typescript (TODO)
 * other TODOs
 
 # Additional Resources
