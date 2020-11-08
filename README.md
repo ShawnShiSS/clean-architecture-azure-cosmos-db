@@ -1,14 +1,20 @@
 # Clean Architecture with partitioned repository pattern using Azure Cosmos DB
 This solution provides a starting point to build a web API to work with Azure Cosmos DB using ASP.NET Core and Azure Cosmos DB .NET SDK V3, based on Clean Architecture and repository design pattern. 
 * Partition key is also implemented through the repository pattern in order to support large scale Cosmos DB.
-* A RESTful API application is created with popular architecture features (see list below).
-
-**(NEW) In addition to a REST API project, an Azure Functions starter project is also created to demonstrate how it can be used as a serverless computer service to work with Cosmos DB.**
-* Azure Functions project is also created with popular architecture features (see list below).
+* A RESTful API application is created with popular architecture features (see full list below).
 
 Clean Architecture is promoted by Microsoft on their .NET application architecture guide page. The e-book written by Steve "ardalis" Smith ([@ardalis](https://github.com/ardalis)) is beautifully written and well explains the beauty and benefits of using Clean Architecture. For more details, please see [**Architect Modern Web Applications with ASP.NET Core and Azure**](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)
 
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
+
+
+**(NEW) In addition to a REST API project, an Azure Functions starter project is also created to demonstrate how it can be used as a serverless computer service to work with Cosmos DB.**
+* Azure Functions project is also created with popular architecture features (see full list below).
+
+**(NEW) Auditing feature is added**
+* A default Audit container is created at API startup.
+* Audit container use the entity id as the partition key, so that each entity record technically should have 20G worth of storage size avaiable to store audit log.
+* Auditing is done automatically when updating an item.
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, please give it a star. Thanks! :star: 
@@ -51,6 +57,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * Search data in Cosmos DB using Parameterized Query
 * Search data in Cosmos DB using LINQ and IQueryable
 * Search data in Cosmos DB using Specification Pattern to abstract out query-specific logic
+* Audit container and automatic auditing 
 
 
 # New Features Under Development
@@ -58,6 +65,7 @@ The primary goal of the project is to provide a basic solution structure for any
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* SPA Client Application using React + Typescript (TODO)
 * other TODOs
 
 # Additional Resources
