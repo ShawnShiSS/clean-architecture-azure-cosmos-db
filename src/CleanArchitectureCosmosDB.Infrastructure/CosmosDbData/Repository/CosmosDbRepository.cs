@@ -35,14 +35,22 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         public abstract PartitionKey ResolvePartitionKey(string entityId);
 
         /// <summary>
-        ///     Generate id for the audit record
+        ///     Generate id for the audit record.
+        ///     All entities will share the same audit container,
+        ///     so we can define this method here with virtual default implementation.
+        ///     Audit records for different entities will use different partition key values,
+        ///     so we are not limited to the 20G per logical partition storage limit.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         public virtual string GenerateAuditId(Audit entity) => $"{entity.EntityId}:{Guid.NewGuid()}";
 
         /// <summary>
-        ///     Resolve the partition key for the audit record
+        ///     Resolve the partition key for the audit record.
+        ///     All entities will share the same audit container,
+        ///     so we can define this method here with virtual default implementation.
+        ///     Audit records for different entities will use different partition key values,
+        ///     so we are not limited to the 20G per logical partition storage limit.
         /// </summary>
         /// <param name="entityId"></param>
         /// <returns></returns>
@@ -51,6 +59,9 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
 
         private readonly ICosmosDbContainerFactory _cosmosDbContainerFactory;
         private readonly Microsoft.Azure.Cosmos.Container _container;
+        /// <summary>
+        ///     Audit container that will store audit log for all entities.
+        /// </summary>
         private readonly Microsoft.Azure.Cosmos.Container _auditContainer;
 
         public CosmosDbRepository(ICosmosDbContainerFactory cosmosDbContainerFactory)
@@ -58,7 +69,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             this._cosmosDbContainerFactory = cosmosDbContainerFactory ?? throw new ArgumentNullException(nameof(ICosmosDbContainerFactory));
             this._container = this._cosmosDbContainerFactory.GetContainer(ContainerName)._container;
             this._auditContainer = this._cosmosDbContainerFactory.GetContainer("Audit")._container;
-
         }
 
         public async Task AddItemAsync(T item)
