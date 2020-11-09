@@ -23,6 +23,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         public AuditRepository(ICosmosDbContainerFactory factory) : base(factory)
         { }
 
-
+        // TODO : add API.AuditController to retrieve audit history for a specific entity.
     }
 }
