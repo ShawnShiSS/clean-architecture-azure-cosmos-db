@@ -12,6 +12,7 @@ namespace CleanArchitectureCosmosDB.Core.Entities
             this.EntityType = entityType;
             this.EntityId = entityId;
             this.Entity = entity;
+            this.DateCreatedUTC = DateTime.UtcNow;
         }
 
         /// <summary>

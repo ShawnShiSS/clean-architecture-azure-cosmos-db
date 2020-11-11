@@ -2,9 +2,6 @@
 using CleanArchitectureCosmosDB.Core.Interfaces.Persistence;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Azure.Cosmos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
 {
@@ -23,6 +20,5 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         public AuditRepository(ICosmosDbContainerFactory factory) : base(factory)
         { }
 
-        // TODO : add API.AuditController to retrieve audit history for a specific entity.
     }
 }
