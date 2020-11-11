@@ -13,7 +13,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 
 **(NEW) Auditing feature**
 * A default Audit container is created at API startup.
-* Auditing is done through repository automatically when updating an item.
+* Auditing is done through repository automatically when updating an item, with no code change required in the API project.
 * An example API endpoint is added to demonstrate how to retrieve full history of an entity.
 * Audit container use the entity id as the partition key, so that each entity record technically should have 20G worth of storage size avaiable to store audit log.
 
