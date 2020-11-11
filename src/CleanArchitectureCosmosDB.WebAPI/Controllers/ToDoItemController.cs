@@ -34,6 +34,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [EnableQuery()]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {
             var response = await _mediator.Send(new GetAll.GetAllQuery());
@@ -47,6 +48,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetToDoItem")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+
         public async Task<ToDoItemModel> Get(string id)
         {
             var response = await _mediator.Send(new Get.GetQuery() { Id = id });
@@ -61,6 +64,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Create))]
         public async Task<IActionResult> Create([FromBody] Create.CreateCommand command)
         {
             var response = await _mediator.Send(command);
@@ -75,7 +79,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Update.UpdateCommand command)
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Update))]
+        public async Task<IActionResult> Update(string id, [FromBody] Update.UpdateCommand command)
         {
             if (id != command.Id)
             {
@@ -94,6 +99,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
         public async Task Delete(string id)
         {
             await _mediator.Send(new Delete.DeleteCommand() { Id = id });
