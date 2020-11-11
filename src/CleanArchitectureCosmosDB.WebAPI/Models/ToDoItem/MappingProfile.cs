@@ -21,6 +21,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
 
             // Create
             CreateMap<ToDoItem.Create.CreateCommand, Core.Entities.ToDoItem>();
+
+            // Audit
+            CreateMap<Core.Entities.Audit, ToDoItemAuditModel>()
+                .ForMember(t => t.ToDoItemModel, s => s.MapFrom(audit => Newtonsoft.Json.JsonConvert.DeserializeObject<ToDoItemModel>(audit.Entity)));
         }
         
     }

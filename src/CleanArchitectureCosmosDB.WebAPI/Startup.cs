@@ -1,5 +1,6 @@
 using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Interfaces.Persistence;
 using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
@@ -70,6 +71,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             // Non-distributed in-memory cache services
             services.AddMemoryCache();
             services.AddScoped<ICachedToDoItemsService, InMemoryCachedToDoItemsService>();
+            services.AddScoped<IAuditRepository, AuditRepository>();
 
 
             // API controllers

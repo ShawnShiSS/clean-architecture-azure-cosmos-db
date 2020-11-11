@@ -30,6 +30,10 @@ namespace CleanArchitectureCosmosDB.Core.Entities
         /// </summary>
         public string Entity { get; set; }
 
+        /// <summary>
+        ///     Date audit record created
+        /// </summary>
+        public DateTime DateCreatedUTC { get; set; }
 
     }
 }

@@ -105,6 +105,21 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
             await _mediator.Send(new Delete.DeleteCommand() { Id = id });
         }
 
-        
+        // GET: api/ToDoItem/5/AuditHistory
+        /// <summary>
+        ///     Get audit history of an item by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/AuditHistory", Name = "GetToDoItemAuditHistory")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<IEnumerable<WebAPI.Models.ToDoItem.ToDoItemAuditModel>> GetAuditHistory(string id)
+        {
+            var response = await _mediator.Send(new GetAuditHistory.GetQuery() { Id = id });
+
+            return response.Resource;
+        }
+
+
     }
 }
