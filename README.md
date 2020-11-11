@@ -8,12 +8,12 @@ Clean Architecture is promoted by Microsoft on their .NET application architectu
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
 
 
-**(NEW) In addition to a REST API project, an Azure Functions starter project is also created to demonstrate how it can be used as a serverless computer service to work with Cosmos DB.**
-* Azure Functions project is also created with popular architecture features (see full list below).
+**(NEW) Azure Functions starter project**
+* An Azure Functions project is also created with popular architecture features (see full list below), in order to demonstrate how it can be used as a serverless computer service to work with Cosmos DB.
 
-**(NEW) Auditing feature is added**
+**(NEW) Auditing feature**
 * A default Audit container is created at API startup.
-* Auditing is done automatically when updating an item.
+* Auditing is done through repository automatically when updating an item.
 * An example API endpoint is added to demonstrate how to retrieve full history of an entity.
 * Audit container use the entity id as the partition key, so that each entity record technically should have 20G worth of storage size avaiable to store audit log.
 
