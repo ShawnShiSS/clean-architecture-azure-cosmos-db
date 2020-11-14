@@ -52,6 +52,7 @@ export default function CheckboxList() {
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
+            <ListItemText id={labelId} primary={`Category ${value + 1}`} />
             <ListItemText id={labelId} primary={`Todo item ${value + 1}`} />
             <ListItemSecondaryAction>
               <IconButton edge="end" aria-label="comments">
