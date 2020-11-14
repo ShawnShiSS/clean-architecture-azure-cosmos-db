@@ -17,7 +17,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * An example API endpoint is added to demonstrate how to retrieve full history of an entity.
 * Audit container use the entity id as the partition key, so that each entity record technically should have 20G worth of storage size avaiable to store audit log.
 
-**(NEW) Client Application (work in progress)**
+**(NEW) React Client Web Application**
 * A web application built using React, Typescript, Material UI
 
 # Give a star
@@ -53,6 +53,7 @@ Prerequisites:
 * ASP.NET Core 3.1
 * Azure Cosmos DB .NET SDK V3
 * **Azure Functions V3 (new)**
+* **Client Web Application using React + Typescript + Material UI(new)**
 * Repository Design Pattern
 * Horizontal Partitioning
 * Partition Key Design
@@ -83,7 +84,6 @@ Prerequisites:
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* SPA Client Application using React + Typescript (TODO)
 * other TODOs
 
 # Additional Resources
