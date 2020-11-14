@@ -49,8 +49,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet("{id}", Name = "GetToDoItem")]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-
-        public async Task<ToDoItemModel> Get(string id)
+        public async Task<ActionResult<ToDoItemModel>> Get(string id)
         {
             var response = await _mediator.Send(new Get.GetQuery() { Id = id });
 
