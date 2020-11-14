@@ -29,13 +29,15 @@ The primary goal of the project is to provide a basic solution structure for any
 
 **For a detailed discussion, please see my recent article, Clean Architecture — ASP.NET Core API using Partitioned Repository Pattern and Azure Cosmos DB** (link: https://medium.com/swlh/clean-architecture-with-partitioned-repository-pattern-using-azure-cosmos-db-62241854cbc5)
 
-# Getting Started
+# Getting Started - API
 1. Download the Azure CosmosDB emulator in order to run the API project locally. Here is a download link: https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-release-notes#download.
 2. Start the emulator
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
 
-# Getting Started - SPA client app
+# Getting Started - Client Application
+Because the client web application is built using React and TypeScript, you need a couple of things below installed on your machine.
+
 Prerequisites:
 * Download and install [node.js](https://nodejs.org/en/download/)
 * Download and install [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
