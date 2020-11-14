@@ -1,11 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Link as RouterLink, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import Dashboard from './layouts/Dashboard'
+import DashboardLayout from './layouts/DashboardLayout'
+import Dashboard from './views/Dashboard'
 
 function App() {
   return (
-    <Dashboard />
+    <>
+      <DashboardLayout>
+        <Switch>
+          <Redirect exact from="/" to="/dashboard" />
+          <Route path="/dashboard" exact={true} component={Dashboard} />
+          
+        </Switch>
+        
+      </DashboardLayout>
+
+    </>
   );
 }
 
