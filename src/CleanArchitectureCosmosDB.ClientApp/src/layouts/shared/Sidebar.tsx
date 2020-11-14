@@ -9,8 +9,10 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Divider from '@material-ui/core/Divider';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
-export const mainListItems = (
+const Sidebar: React.FC = () => (
   <div>
     <ListItem button>
       <ListItemIcon>
@@ -20,33 +22,31 @@ export const mainListItems = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <ListAltIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <ListItemText primary="ToDo List" />
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Customers" />
-    </ListItem>
+    </ListItem> */}
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Integrations" />
     </ListItem>
-  </div>
-);
 
-export const secondaryListItems = (
-  <div>
+    <Divider />
+    
     <ListSubheader inset>Saved reports</ListSubheader>
     <ListItem button>
       <ListItemIcon>
@@ -65,6 +65,9 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
-    </ListItem>
+    </ListItem> */}
   </div>
 );
+
+
+export default Sidebar;
