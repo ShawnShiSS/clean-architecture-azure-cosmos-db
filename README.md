@@ -35,6 +35,18 @@ The primary goal of the project is to provide a basic solution structure for any
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
 
+# Getting Started - SPA client app
+Prerequisites:
+* Download and install [node.js](https://nodejs.org/en/download/)
+* Download and install [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+* (optional) Download and install [Visual Studio Code](https://code.visualstudio.com/download)
+
+1. Open folder src/CleanArchitectureCosmosDB.ClientApp in Visual Studio Code 
+1. Open Terminal
+1. Run command "yarn install"
+1. Run command "yarn start"
+1. You should see the web app running on localhost:3000
+
 # Features supported
 * ASP.NET Core 3.1
 * Azure Cosmos DB .NET SDK V3
