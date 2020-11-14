@@ -318,13 +318,13 @@ export interface ProblemDetails {
 /** ToDoItem Api Model */
 export interface ToDoItemModel {
     /** ToDoItem Id */
-    id?: string | undefined;
+    id: string;
     /** Category which the To-Do-Item belongs to */
-    category?: string | undefined;
+    category: string;
     /** Title of the To-Do-Item */
-    title?: string | undefined;
+    title: string;
     /** Whether the To-Do-Item is done */
-    readonly isCompleted?: boolean;
+    readonly isCompleted: boolean;
 }
 
 /** Model to create an entity */

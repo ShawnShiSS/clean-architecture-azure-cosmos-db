@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,11 +9,16 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 
+// API 
+import {ToDoItemModel} from '../helpers/api/Resources';
+import {ApiClientFactory} from '../helpers/api/ApiClientFactory';
+
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      maxWidth: 360,
+    //   maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
   }),
@@ -21,8 +26,24 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TodoList : React.FC = () => {
   const classes = useStyles();
+  const apiClient = ApiClientFactory.GetApiClient();
+
   const [checked, setChecked] = React.useState([0]);
-//   const [todoList, setTodoList] = useState<>
+  const [todoList, setTodoList] = useState<ToDoItemModel[]>([]);
+  const loadTodoList = () => {
+    apiClient.toDoItemAll().then((response) => {
+        setTodoList(response);
+    });
+  };
+  
+  React.useEffect(
+    () => { 
+        loadTodoList()
+        console.log(todoList)
+    }, 
+    [] // providing empty array so that useEffect will only run once, as value of [] does not change.
+  ); 
+
 
   const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
@@ -39,22 +60,22 @@ const TodoList : React.FC = () => {
 
   return (
     <List className={classes.root}>
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {todoList.map((value) => {
+        const labelId = `checkbox-list-label-${value.id}`;
 
         return (
-          <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+          <ListItem key={value.id} role={undefined} dense button onClick={()=>{}}>
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(value) !== -1}
+                checked={!value.isCompleted}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={`Category ${value + 1}`} />
-            <ListItemText id={labelId} primary={`Todo item ${value + 1}`} />
+            <ListItemText id={labelId} primary={`${value.category}`} />
+            <ListItemText id={labelId} primary={`${value.title}`} />
             <ListItemSecondaryAction>
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
