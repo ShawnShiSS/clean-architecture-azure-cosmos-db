@@ -138,7 +138,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clean Architecture API V1");
             });
-
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
