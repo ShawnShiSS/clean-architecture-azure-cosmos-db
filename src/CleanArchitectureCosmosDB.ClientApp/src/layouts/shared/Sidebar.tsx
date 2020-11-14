@@ -14,17 +14,17 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 
 const Sidebar: React.FC = () => (
   <div>
-    <ListItem button>
+    <ListItem button component="a" href='/dashboard'>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href='/todolist'>
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
-      <ListItemText primary="ToDo List" />
+      <ListItemText primary="Todo List" />
     </ListItem>
     {/* <ListItem button>
       <ListItemIcon>

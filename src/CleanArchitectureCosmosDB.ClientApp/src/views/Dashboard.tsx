@@ -1,8 +1,9 @@
 import React from 'react'
+import Typography from '@material-ui/core/Typography';
 
 const Dashboard : React.FC = () => {
     return (
-        <h2> Dashboard </h2>
+        <Typography variant="h3">Dashboard</Typography>
     ) 
 
 }
