@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function CheckboxList() {
+const TodoList : React.FC = () => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
+//   const [todoList, setTodoList] = useState<>
 
   const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
@@ -65,3 +66,5 @@ export default function CheckboxList() {
     </List>
   );
 }
+
+export default TodoList
