@@ -86,6 +86,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
                         options.ModelValidatorProviders.Clear();
                     });
 
+            // TODO : swap out Swashbuckle and use NSwag instead, so NSwagStudio works properly.
             // swagger
             services.AddSwaggerGen(options =>
             {
