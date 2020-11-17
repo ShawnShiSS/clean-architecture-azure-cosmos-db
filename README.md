@@ -84,6 +84,7 @@ Prerequisites:
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* TypeScript client code generation from API (TODO)
 * other TODOs
 
 # Additional Resources
