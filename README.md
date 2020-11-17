@@ -18,7 +18,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * Audit container use the entity id as the partition key, so that each entity record technically should have 20G worth of storage size avaiable to store audit log.
 
 **(NEW) React Client Web Application**
-* A web application built using React, Typescript, Material UI
+* A web application dashboard built using React, Typescript, Material UI.
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, please give it a star. Thanks! :star: 
