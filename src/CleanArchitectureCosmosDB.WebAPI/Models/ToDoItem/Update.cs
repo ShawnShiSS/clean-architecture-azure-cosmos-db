@@ -56,6 +56,9 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// </summary>
             public UpdateToDoItemCommandValidator()
             {
+                RuleFor(x => x.Id)
+                    .NotEmpty();
+
                 RuleFor(x => x.Category)
                     .NotEmpty();
 
