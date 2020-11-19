@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TodoList : React.FC = () => {
   const classes = useStyles();
-  const apiClient = ApiClientFactory.GetApiClient();
+  const apiClient = ApiClientFactory.GetToDoItemClient();
 
   const [checked, setChecked] = React.useState([0]);
   const [todoList, setTodoList] = useState<ToDoItemModel[]>([]);
   const loadTodoList = () => {
-    apiClient.toDoItemAll().then((response) => {
+    apiClient.getAll().then((response) => {
         setTodoList(response);
     });
   };

@@ -1,9 +1,9 @@
-import { Client } from './Resources';
+import { ToDoItemClient } from './Resources';
 
 export class ApiClientFactory {
-    static GetApiClient(): Client {
+    static GetToDoItemClient(): ToDoItemClient {
         const baseUrl : string = "https://localhost:5001";
-        const client : Client = new Client(baseUrl);
+        const client : ToDoItemClient = new ToDoItemClient(baseUrl);
 
         return client;
     }
