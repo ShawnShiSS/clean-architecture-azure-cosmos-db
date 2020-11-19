@@ -7,44 +7,43 @@
 //----------------------
 // ReSharper disable InconsistentNaming
 
-export class Client {
+export class ToDoItemClient {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
         this.http = http ? http : <any>window;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "https://localhost:5001";
     }
 
     /**
      * Get all
-     * @return Success
      */
-    toDoItemAll(): Promise<ToDoItemModel[]> {
+    getAll(): Promise<ToDoItemModel[]> {
         let url_ = this.baseUrl + "/api/ToDoItem";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Accept": "application/json;odata.metadata=minimal;odata.streaming=true"
+                "Accept": "application/json"
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processToDoItemAll(_response);
+            return this.processGetAll(_response);
         });
     }
 
-    protected processToDoItemAll(response: Response): Promise<ToDoItemModel[]> {
+    protected processGetAll(response: Response): Promise<ToDoItemModel[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 404) {
             return response.text().then((_responseText) => {
             let result404: any = null;
             result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Not Found", status, _responseText, _headers, result404);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
             });
         } else if (status === 200) {
             return response.text().then((_responseText) => {
@@ -56,43 +55,41 @@ export class Client {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
 
     /**
      * Create
-     * @param body (optional) 
-     * @return Success
      */
-    toDoItem(body: CreateCommand | undefined): Promise<void> {
+    create(command: CreateToDoItemCommand): Promise<void> {
         let url_ = this.baseUrl + "/api/ToDoItem";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
+        const content_ = JSON.stringify(command);
 
         let options_ = <RequestInit>{
             body: content_,
             method: "POST",
             headers: {
-                "Content-Type": "application/json;odata.metadata=minimal;odata.streaming=true",
+                "Content-Type": "application/json",
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processToDoItem(_response);
+            return this.processCreate(_response);
         });
     }
 
-    protected processToDoItem(response: Response): Promise<void> {
+    protected processCreate(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 400) {
             return response.text().then((_responseText) => {
             let result400: any = null;
             result400 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Bad Request", status, _responseText, _headers, result400);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             });
         } else if (status === 201) {
             return response.text().then((_responseText) => {
@@ -102,16 +99,15 @@ export class Client {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
 
     /**
      * Get by id
-     * @return Success
      */
-    getToDoItem(id: string | null): Promise<ToDoItemModel> {
+    get(id: string | null): Promise<ToDoItemModel> {
         let url_ = this.baseUrl + "/api/ToDoItem/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -121,23 +117,23 @@ export class Client {
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Accept": "application/json;odata.metadata=minimal;odata.streaming=true"
+                "Accept": "application/json"
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processGetToDoItem(_response);
+            return this.processGet(_response);
         });
     }
 
-    protected processGetToDoItem(response: Response): Promise<ToDoItemModel> {
+    protected processGet(response: Response): Promise<ToDoItemModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 404) {
             return response.text().then((_responseText) => {
             let result404: any = null;
             result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Not Found", status, _responseText, _headers, result404);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
             });
         } else if (status === 200) {
             return response.text().then((_responseText) => {
@@ -149,39 +145,37 @@ export class Client {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
 
     /**
      * Update
-     * @param body (optional) 
-     * @return Success
      */
-    toDoItem2(id: string | null, body: UpdateCommand | undefined): Promise<void> {
+    update(id: string | null, command: UpdateCommand): Promise<void> {
         let url_ = this.baseUrl + "/api/ToDoItem/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
+        const content_ = JSON.stringify(command);
 
         let options_ = <RequestInit>{
             body: content_,
             method: "PUT",
             headers: {
-                "Content-Type": "application/json;odata.metadata=minimal;odata.streaming=true",
+                "Content-Type": "application/json",
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processToDoItem2(_response);
+            return this.processUpdate(_response);
         });
     }
 
-    protected processToDoItem2(response: Response): Promise<void> {
+    protected processUpdate(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 204) {
@@ -192,28 +186,27 @@ export class Client {
             return response.text().then((_responseText) => {
             let result404: any = null;
             result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Not Found", status, _responseText, _headers, result404);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
             });
         } else if (status === 400) {
             return response.text().then((_responseText) => {
             let result400: any = null;
             result400 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Bad Request", status, _responseText, _headers, result400);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             });
         } else {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
 
     /**
      * Delete
-     * @return Success
      */
-    toDoItem3(id: string | null): Promise<void> {
+    delete(id: string | null): Promise<void> {
         let url_ = this.baseUrl + "/api/ToDoItem/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -227,18 +220,18 @@ export class Client {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processToDoItem3(_response);
+            return this.processDelete(_response);
         });
     }
 
-    protected processToDoItem3(response: Response): Promise<void> {
+    protected processDelete(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 404) {
             return response.text().then((_responseText) => {
             let result404: any = null;
             result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Not Found", status, _responseText, _headers, result404);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
             });
         } else if (status === 200) {
             return response.text().then((_responseText) => {
@@ -248,22 +241,21 @@ export class Client {
             return response.text().then((_responseText) => {
             let result400: any = null;
             result400 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Bad Request", status, _responseText, _headers, result400);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             });
         } else {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
 
     /**
      * Get audit history of an item by id
-     * @return Success
      */
-    getToDoItemAuditHistory(id: string | null): Promise<ToDoItemAuditModel[]> {
+    getAuditHistory(id: string | null): Promise<ToDoItemAuditModel[]> {
         let url_ = this.baseUrl + "/api/ToDoItem/{id}/AuditHistory";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -273,23 +265,23 @@ export class Client {
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Accept": "application/json;odata.metadata=minimal;odata.streaming=true"
+                "Accept": "application/json"
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processGetToDoItemAuditHistory(_response);
+            return this.processGetAuditHistory(_response);
         });
     }
 
-    protected processGetToDoItemAuditHistory(response: Response): Promise<ToDoItemAuditModel[]> {
+    protected processGetAuditHistory(response: Response): Promise<ToDoItemAuditModel[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 404) {
             return response.text().then((_responseText) => {
             let result404: any = null;
             result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Not Found", status, _responseText, _headers, result404);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
             });
         } else if (status === 200) {
             return response.text().then((_responseText) => {
@@ -301,7 +293,7 @@ export class Client {
             return response.text().then((_responseText) => {
             let resultdefault: any = null;
             resultdefault = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("Error", status, _responseText, _headers, resultdefault);
+            return throwException("A server side error occurred.", status, _responseText, _headers, resultdefault);
             });
         }
     }
@@ -313,43 +305,56 @@ export interface ProblemDetails {
     status?: number | undefined;
     detail?: string | undefined;
     instance?: string | undefined;
+    extensions?: { [key: string]: any; } | undefined;
 }
 
 /** ToDoItem Api Model */
 export interface ToDoItemModel {
-    /** ToDoItem Id */
+    /** ToDoItem Id
+             */
     id: string;
-    /** Category which the To-Do-Item belongs to */
+    /** Category which the To-Do-Item belongs to
+             */
     category: string;
-    /** Title of the To-Do-Item */
+    /** Title of the To-Do-Item
+             */
     title: string;
-    /** Whether the To-Do-Item is done */
-    readonly isCompleted: boolean;
+    /** Whether the To-Do-Item is done
+             */
+    isCompleted: boolean;
 }
 
 /** Model to create an entity */
-export interface CreateCommand {
-    /** Category */
-    category?: string | undefined;
-    /** Title */
-    title?: string | undefined;
+export interface CreateToDoItemCommand {
+    /** Category
+             */
+    category: string;
+    /** Title
+             */
+    title: string;
 }
 
 /** Model to Update an entity */
 export interface UpdateCommand {
-    /** Id */
-    id?: string | undefined;
-    /** Category */
-    category?: string | undefined;
-    /** Title */
-    title?: string | undefined;
+    /** Id
+             */
+    id: string;
+    /** Category
+             */
+    category: string;
+    /** Title
+             */
+    title: string;
 }
 
 /** ToDoItem audit Model */
 export interface ToDoItemAuditModel {
-    toDoItemModel?: ToDoItemModel;
-    /** Date audit record created */
-    dateCreatedUTC?: Date;
+    /** Snapshot of the ToDoItem
+             */
+    toDoItemModel: ToDoItemModel;
+    /** Date audit record created
+             */
+    dateCreatedUTC: Date;
 }
 
 export class ApiException extends Error {
