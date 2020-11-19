@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
 {
@@ -13,10 +11,12 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Snapshot of the ToDoItem
         /// </summary>
+        [Required]
         public ToDoItemModel ToDoItemModel { get; set; }
         /// <summary>
         ///     Date audit record created
         /// </summary>
+        [Required]
         public DateTime DateCreatedUTC { get; set; }
     }
 }

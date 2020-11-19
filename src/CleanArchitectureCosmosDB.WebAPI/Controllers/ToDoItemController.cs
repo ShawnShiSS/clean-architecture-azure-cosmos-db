@@ -64,7 +64,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Create))]
-        public async Task<IActionResult> Create([FromBody] Create.CreateCommand command)
+        public async Task<IActionResult> Create([FromBody] Create.CreateToDoItemCommand command)
         {
             var response = await _mediator.Send(command);
             return CreatedAtRoute("GetToDoItem", new { id = response.Id }, null);
@@ -99,9 +99,11 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
-        public async Task Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            await _mediator.Send(new Delete.DeleteCommand() { Id = id });
+            await _mediator.Send(new Delete.DeleteToDoItemCommand() { Id = id });
+
+            return NoContent();
         }
 
         // GET: api/ToDoItem/5/AuditHistory

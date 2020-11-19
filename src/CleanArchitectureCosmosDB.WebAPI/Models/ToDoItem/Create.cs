@@ -16,7 +16,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Model to create an entity
         /// </summary>
-        public class CreateCommand : IRequest<CommandResponse>
+        public class CreateToDoItemCommand : IRequest<CommandResponse>
         {
             /// <summary>
             ///     Category
@@ -45,7 +45,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Register Validation 
         /// </summary>
-        public class CreateToDoItemCommandValidator : AbstractValidator<CreateCommand>
+        public class CreateToDoItemCommandValidator : AbstractValidator<CreateToDoItemCommand>
         {
             /// <summary>
             ///     Validator ctor
@@ -65,7 +65,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Handler
         /// </summary>
-        public class CommandHandler : IRequestHandler<CreateCommand, CommandResponse>
+        public class CommandHandler : IRequestHandler<CreateToDoItemCommand, CommandResponse>
         {
             private readonly IToDoItemRepository _repo;
             private readonly IMapper _mapper;
@@ -88,7 +88,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// <param name="command"></param>
             /// <param name="cancellationToken"></param>
             /// <returns></returns>
-            public async Task<CommandResponse> Handle(CreateCommand command, CancellationToken cancellationToken)
+            public async Task<CommandResponse> Handle(CreateToDoItemCommand command, CancellationToken cancellationToken)
             {
                 CommandResponse response = new CommandResponse();
                 Core.Entities.ToDoItem entity = _mapper.Map<Core.Entities.ToDoItem>(command);
