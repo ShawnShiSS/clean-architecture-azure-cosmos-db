@@ -19,6 +19,8 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 
 **(NEW) React Client Web Application**
 * A web application dashboard built using React, Typescript, Material UI.
+* NSwagStudio is used to generate TypeScript client code to interact with the API.
+* NSwagStudio file is added to the ClientApp project.
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, please give it a star. Thanks! :star: 
