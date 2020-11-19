@@ -20,7 +20,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             CreateMap<Core.Entities.ToDoItem, ToDoItemModel>().ReverseMap();
 
             // Create
-            CreateMap<ToDoItem.Create.CreateCommand, Core.Entities.ToDoItem>();
+            CreateMap<ToDoItem.Create.CreateToDoItemCommand, Core.Entities.ToDoItem>();
 
             // Audit
             CreateMap<Core.Entities.Audit, ToDoItemAuditModel>()
