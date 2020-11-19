@@ -66,7 +66,8 @@ Prerequisites:
 * Serilog for structured logging
 * MediatR Command/Query pattern
 * MediatR pipeline behaviour for exception handling 
-* FluentValidation for validation
+* FluentValidation for model validation
+* FluentValidation to define validation rules in Swagger Schema
 * AutoMapper to mapping
 * Email Sender using SendGrid 
 * Cosmos DB Database initial creation
