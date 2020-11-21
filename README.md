@@ -82,13 +82,13 @@ Prerequisites:
 * Search data in Cosmos DB using Specification Pattern to abstract out query-specific logic
 * Audit container and automatic auditing 
 * NSwagStudio file to generate TypeScript client code 
+* DataTables and Pagination support using LINQ and IQueryable in API
 
 # New Features Under Development
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* Pagination support using LINQ and IQueryable (TODO)
 * other TODOs
 
 # Additional Resources
