@@ -80,7 +80,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddControllers(options =>
                         // handle exceptions thrown by an action
                         options.Filters.Add(new ApiExceptionFilterAttribute()))
-                    .AddNewtonsoftJson()
+                    .AddNewtonsoftJson(options =>
+                    {
+                        // Serilize enum in string
+                        options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                    })
                     .AddFluentValidation(options => {
                         // In order to register FluentValidation to define Swagger schema
                         // https://github.com/RicoSuter/NSwag/issues/1722#issuecomment-544202504
