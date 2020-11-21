@@ -88,6 +88,7 @@ Prerequisites:
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Pagination support using LINQ and IQueryable (TODO)
 * other TODOs
 
 # Additional Resources
