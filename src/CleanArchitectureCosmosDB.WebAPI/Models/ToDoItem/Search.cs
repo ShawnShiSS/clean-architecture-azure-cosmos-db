@@ -81,6 +81,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             public SearchToDoItemQueryValidator()
             {
                 RuleFor(x => x.PageSize)
+                    .NotEmpty()
                     .GreaterThan(0);
 
             }
