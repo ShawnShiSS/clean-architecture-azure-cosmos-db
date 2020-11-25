@@ -89,6 +89,8 @@ Prerequisites:
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Client side validation using Formik and Yup in React Client App (TODO)
+* Render Server-side validation errors using Formik and Yup in React Client App (TODO)
 * other TODOs
 
 # Additional Resources
