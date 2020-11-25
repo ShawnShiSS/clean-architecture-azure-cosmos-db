@@ -67,7 +67,7 @@ Prerequisites:
 * Serilog for structured logging
 * MediatR Command/Query pattern
 * MediatR pipeline behaviour for exception handling 
-* FluentValidation for model validation
+* FluentValidation for model validation (with support for database query)
 * FluentValidation to define validation rules in Swagger Schema
 * AutoMapper to mapping
 * Email Sender using SendGrid 
