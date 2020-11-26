@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Exceptions;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Specifications;
 using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -51,11 +53,15 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// </summary>
         public class UpdateToDoItemCommandValidator : AbstractValidator<UpdateCommand>
         {
+            private readonly IToDoItemRepository _repo;
+
             /// <summary>
             ///     Validator ctor
             /// </summary>
-            public UpdateToDoItemCommandValidator()
+            public UpdateToDoItemCommandValidator(IToDoItemRepository repo)
             {
+                this._repo = repo ?? throw new ArgumentNullException(nameof(repo));
+
                 RuleFor(x => x.Id)
                     .NotEmpty();
 
@@ -66,6 +72,26 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
                     .NotEmpty();
             }
 
+            /// <summary>
+            ///     Check uniqueness
+            /// </summary>
+            /// <param name="command"></param>
+            /// <param name="title"></param>
+            /// <param name="cancellationToken"></param>
+            /// <returns></returns>
+            public async Task<bool> HasUniqueName(UpdateCommand command, string title, CancellationToken cancellationToken)
+            {
+                var specification = new ToDoItemSearchSpecification(title,
+                                                                      exactSearch: true);
+
+                var entities = await _repo.GetItemsAsync(specification);
+
+                return entities == null ||
+                       entities.Count() == 0 ||
+                       // self
+                       entities.All(x => x.Id == command.Id);
+
+            }
         }
 
 
