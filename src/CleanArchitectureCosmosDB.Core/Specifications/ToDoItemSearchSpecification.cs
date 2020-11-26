@@ -9,12 +9,20 @@ namespace CleanArchitectureCosmosDB.Core.Specifications
                                              int pageStart = 0,
                                              int pageSize = 50,
                                              string sortColumn = "title",
-                                             SortDirection sortDirection = SortDirection.Ascending
+                                             SortDirection sortDirection = SortDirection.Ascending,
+                                             bool exactSearch = false
                                              )
         {
             if (!string.IsNullOrWhiteSpace(title))
             {
-                Query.Where(item => item.Title.ToLower().Contains(title.ToLower()));
+                if (exactSearch)
+                {
+                    Query.Where(item => item.Title.ToLower() == title.ToLower());
+                }
+                else
+                {
+                    Query.Where(item => item.Title.ToLower().Contains(title.ToLower()));
+                }
             }
 
             // Pagination
