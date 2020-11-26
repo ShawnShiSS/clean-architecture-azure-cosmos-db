@@ -59,7 +59,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.Behaviours.ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.ApiExceptions.UnhandledExceptionBehaviour<,>));
             // Fluent Validation, this will scan and register everything that inherits FluentValidation.AbstractValidator
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Bind database-related bindings
             var cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
@@ -80,7 +80,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddControllers(options =>
                         // handle exceptions thrown by an action
                         options.Filters.Add(new ApiExceptionFilterAttribute()))
-                    .AddNewtonsoftJson()
+                    .AddNewtonsoftJson(options =>
+                    {
+                        // Serilize enum in string
+                        options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                    })
                     .AddFluentValidation(options => {
                         // In order to register FluentValidation to define Swagger schema
                         // https://github.com/RicoSuter/NSwag/issues/1722#issuecomment-544202504
@@ -92,6 +96,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
                     })
                     .AddMvcOptions(options => {
                         // Clear the default MVC model validations, as we are registering all model validators using FluentValidation
+                        // https://github.com/jasontaylordev/NorthwindTraders/issues/76
                         options.ModelMetadataDetailsProviders.Clear();
                         options.ModelValidatorProviders.Clear();
                     });

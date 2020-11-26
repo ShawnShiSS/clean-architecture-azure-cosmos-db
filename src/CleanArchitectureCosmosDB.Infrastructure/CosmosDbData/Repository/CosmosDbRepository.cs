@@ -131,6 +131,13 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
             return results;
         }
 
+        /// <inheritdoc cref="IRepository{T}.GetItemsCountAsync(ISpecification{T})"/>
+        public async Task<int> GetItemsCountAsync(ISpecification<T> specification)
+        {
+            var queryable = ApplySpecification(specification);
+            return await queryable.CountAsync();
+        }
+
         public async Task UpdateItemAsync(string id, T item)
         {
             // Audit

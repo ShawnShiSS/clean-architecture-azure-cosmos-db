@@ -1,4 +1,5 @@
-﻿using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
+﻿using CleanArchitectureCosmosDB.WebAPI.Models.Shared;
+using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
 using MediatR;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -121,6 +122,27 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
             return response.Resource;
         }
 
+        // Search: api/ToDoItem/Search
+        /// <summary>
+        ///     Search 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpPost("Search", Name = "SearchDefinition")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
+        [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status200OK)]
+        public async Task<DataTablesResponse> Search(Search.SearchToDoItemQuery query)
+        {
+            var response = await _mediator.Send(query);
+            var result = new DataTablesResponse()
+            {
+                Data = response.Resource,
+                TotalRecords = response.TotalRecordsMatched,
+                Page = response.CurrentPage
+            };
+
+            return result;
+        }
 
     }
 }
