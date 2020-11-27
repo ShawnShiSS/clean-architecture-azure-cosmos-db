@@ -83,6 +83,7 @@ Prerequisites:
 * Audit container and automatic auditing 
 * NSwagStudio file to generate TypeScript client code 
 * DataTables and Pagination support using LINQ and IQueryable in API
+* React web app form with client validation using Formik and Yup
 
 # New Features Under Development
 * ASP.NET Core Identity  (TODO)
