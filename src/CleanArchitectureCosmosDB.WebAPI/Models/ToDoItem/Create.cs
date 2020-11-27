@@ -61,6 +61,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
                 RuleFor(x => x.Category)
                     .NotEmpty();
                 RuleFor(x => x.Title)
+                    .Cascade(CascadeMode.Stop)
                     .NotEmpty()
                     .MustAsync(HasUniqueTitle).WithMessage("Title must be unique");
 
