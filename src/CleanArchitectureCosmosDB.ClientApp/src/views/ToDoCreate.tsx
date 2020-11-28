@@ -77,6 +77,7 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
     client.create(data)
           .then((response) => { 
             setIsJustSaved(true);
+            history.push("/todolist");
           })
           .catch((error) => {
             console.log(error);
@@ -91,7 +92,8 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
             }
           })
           .finally(() => {
-            formikHelpers.setSubmitting(false);
+            // formikHelpers.setSubmitting(false);
+            
           });
   }
   
