@@ -57,7 +57,7 @@ const TodoList : React.FC = () => {
 
     setChecked(newChecked);
   };
-
+  // TODO : consider using a datatable for demo purpose?
   return (
     <List className={classes.root}>
       {todoList.map((value) => {
