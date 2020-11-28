@@ -8,19 +8,27 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
+import { Link as RouterLink } from 'react-router-dom';
+import AddIcon from '@material-ui/icons/Add';
+
 
 // API 
 import {ToDoItemModel} from '../helpers/api/Resources';
 import {ApiClientFactory} from '../helpers/api/ApiClientFactory';
+import { Box, Button } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-    //   maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(2)
     },
+    box: {
+      display: "flex",
+      justifyContent: "flex-end"
+    }
   }),
 );
 
@@ -59,7 +67,22 @@ const TodoList : React.FC = () => {
   };
   // TODO : consider using a datatable for demo purpose?
   return (
-    <List className={classes.root}>
+    <>
+      <div className={classes.root}>
+        <Box className={classes.box}>
+          <Button
+            color="primary"
+            variant="contained"
+            component={RouterLink}
+            to="/todolist/create"
+            startIcon={<AddIcon />}
+          >
+            New
+          </Button>
+
+        </Box>
+      </div>
+      <List className={classes.root}>
       {todoList.map((value) => {
         const labelId = `checkbox-list-label-${value.id}`;
 
@@ -85,6 +108,8 @@ const TodoList : React.FC = () => {
         );
       })}
     </List>
+    </>
+    
   );
 }
 

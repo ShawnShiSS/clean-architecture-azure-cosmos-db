@@ -17,6 +17,7 @@ import { useHistory } from 'react-router';
 import TextFieldWithFormikValidation from '../components/TextFieldWithFormikValidation';
 import Alert from '@material-ui/lab/Alert/Alert';
 import LoadingProgress from '../components/LoadingProgress';
+import camelcaseKeys from 'camelcase-keys';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,11 +43,13 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
   const [createCommand, setCreateCommand] = useState<CreateToDoItemCommand | undefined>(undefined);
   // UX states
   const [isJustSaved, setIsJustSaved] = useState<boolean>(false);
-  //   const [hasServerError, setHasServerError] = useState<boolean>(false);
-  //   const [serverErrorMessage, setServerErrorMessage] = useState<string>("");
+  const [hasServerError, setHasServerError] = useState<boolean>(false);
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>("");
 
   const client = ApiClientFactory.GetToDoItemClient();
-  let params: any = useParams();
+  
+  // add this method instead of using initial state in useState, 
+  // so we can reuse this page later for edit purpose
   const loadCreateCommand = () => {
     let initialCommand = {
         title: "",
@@ -74,30 +77,31 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
     client.create(data)
           .then((response) => { 
             setIsJustSaved(true);
+            history.push("/todolist");
           })
           .catch((error) => {
             console.log(error);
             // General error message
-            // setHasServerError(true);
-            // setServerErrorMessage(error.title);
+            setHasServerError(true);
+            setServerErrorMessage(error.title);
             // Field-specific errors from server side validation. 
-            // Note this only works on top level, but not on nested level like Question.Label
-            // if(error.errors)
-            // {
-            //   // Formik errors use camelcase for key values
-            //   formikHelpers.setErrors(camelcaseKeys(error.errors));
-            // }
+            if(error.errors)
+            {
+              // Formik errors use camelcase for key values
+              formikHelpers.setErrors(camelcaseKeys(error.errors));
+            }
           })
           .finally(() => {
-            formikHelpers.setSubmitting(false);
+            // formikHelpers.setSubmitting(false);
+            
           });
   }
   
-//   const clearErrorState = () => 
-//   {
-//     setHasServerError(false);
-//     setServerErrorMessage("");
-//   }
+  const clearErrorState = () => 
+  {
+    setHasServerError(false);
+    setServerErrorMessage("");
+  }
 
   const renderCreateForm = (data: CreateToDoItemCommand) => {
     return (
@@ -143,11 +147,11 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
                       Record is successfully saved.
                     </Alert>
                   </Snackbar>
-                  {/* <Snackbar open={hasServerError} autoHideDuration={6000} onClose={() => clearErrorState()}>
+                  <Snackbar open={hasServerError} autoHideDuration={6000} onClose={() => clearErrorState()}>
                     <Alert onClose={() => clearErrorState()} severity="error">
                       Error: {serverErrorMessage}
                     </Alert>
-                  </Snackbar> */}
+                  </Snackbar>
                 </div>
                 <Typography variant="h6">State</Typography>
                 <pre>{JSON.stringify(values, null, 2)}</pre>
@@ -159,8 +163,6 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
       </Formik>   
     );
   }
-
-  
 
   return (
     <>
