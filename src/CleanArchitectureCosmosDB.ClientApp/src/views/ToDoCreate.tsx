@@ -17,6 +17,7 @@ import { useHistory } from 'react-router';
 import TextFieldWithFormikValidation from '../components/TextFieldWithFormikValidation';
 import Alert from '@material-ui/lab/Alert/Alert';
 import LoadingProgress from '../components/LoadingProgress';
+import camelcaseKeys from 'camelcase-keys';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -83,12 +84,11 @@ const ToDoCreate : React.FC<ToDoCreateProps> = (props) => {
             setHasServerError(true);
             setServerErrorMessage(error.title);
             // Field-specific errors from server side validation. 
-            // Note this only works on top level, but not on nested level like Question.Label
-            // if(error.errors)
-            // {
-            //   // Formik errors use camelcase for key values
-            //   formikHelpers.setErrors(camelcaseKeys(error.errors));
-            // }
+            if(error.errors)
+            {
+              // Formik errors use camelcase for key values
+              formikHelpers.setErrors(camelcaseKeys(error.errors));
+            }
           })
           .finally(() => {
             formikHelpers.setSubmitting(false);
