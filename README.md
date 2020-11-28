@@ -102,7 +102,7 @@ I have published some short articles to cover different aspects of this project.
 * [Azure Cosmos DB — SQL Injection Attack and Defense](https://medium.com/swlh/azure-cosmos-db-sql-injection-attack-and-defense-17b32ef95b9)
 * [Audit Log using Partitioned Repository Pattern with Cosmos DB](https://shawn-shi.medium.com/audit-log-using-partitioned-repository-pattern-with-cosmos-db-99b63de97e35)
 * [Clean Architecture from a Technical Interview Perspective](https://shawn-shi.medium.com/clean-architecture-from-a-technical-interview-perspective-7b79d86d6155)
-* [DataTables support in ASP.NET Core API using Cosmos DB](https://shawn-shi.medium.com/pagination-and-searching-in-asp-net-core-api-using-cosmos-db-869384a59f5)
+* [DataTables Support using Partitioned Repository with Cosmos DB](https://shawn-shi.medium.com/pagination-and-searching-in-asp-net-core-api-using-cosmos-db-869384a59f5)
 * [How to Generate API Client Code Using NSwag With FluentValidation Rules](https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
 * Partition Key Design with Partitioned Repository Pattern (TODO)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
