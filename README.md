@@ -83,15 +83,14 @@ Prerequisites:
 * Audit container and automatic auditing 
 * NSwagStudio file to generate TypeScript client code 
 * DataTables and Pagination support using LINQ and IQueryable in API
-* Form with client-side validations using Formik and Yup in React web application
+* Client side validation using Formik and Yup in React Client App
+* Map and render server-side errors in React Client App
 
 # New Features Under Development
 * ASP.NET Core Identity  (TODO)
 * Identity Service (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* Client side validation using Formik and Yup in React Client App (TODO)
-* Render Server-side validation errors using Formik and Yup in React Client App (TODO)
 * other TODOs
 
 # Additional Resources
