@@ -29,6 +29,11 @@ namespace CleanArchitectureCosmosDB.Core.Interfaces
         /// <returns></returns>
         Task<int> GetItemsCountAsync(ISpecification<T> specification);
 
+        /// <summary>
+        ///     Get one item by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<T> GetItemAsync(string id);
         Task AddItemAsync(T item);
         Task UpdateItemAsync(string id, T item);
