@@ -104,7 +104,7 @@ I have published some short articles to cover different aspects of this project.
 * [DataTables Support using Partitioned Repository with Cosmos DB](https://shawn-shi.medium.com/pagination-and-searching-in-asp-net-core-api-using-cosmos-db-869384a59f5)
 * [How to Generate API Client Code Using NSwag With FluentValidation Rules](https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
 * [Mapping and Displaying Server-Side Errors with Formik in React](https://shawn-shi.medium.com/mapping-and-displaying-server-side-errors-with-formik-in-react-bbe7ae696895)
-* Partition Key Design with Partitioned Repository Pattern (TODO)
+* [Partitioning Best Practice in Partitioned Repository Pattern with Cosmos DB](https://shawn-shi.medium.com/partition-key-design-best-practice-in-partitioned-repository-pattern-with-cosmos-db-ef9318007fc1)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 
 # Acknowledgement
