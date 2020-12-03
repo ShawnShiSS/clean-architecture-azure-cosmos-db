@@ -48,24 +48,17 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
 
                 if (todos.Count() == 0)
                 {
-                    ToDoItem milk = new ToDoItem()
+                    for(int i=0; i<100; i++)
                     {
-                        Category = "Grocery",
-                        Title = "Get more milk"
-                    };
-                    ToDoItem beer = new ToDoItem()
-                    {
-                        Category = "Grocery",
-                        Title = "Get 7 beers"
-                    };
-                    ToDoItem laundry = new ToDoItem()
-                    {
-                        Category = "Household",
-                        Title = "Do laundry"
-                    };
+                        ToDoItem beer = new ToDoItem()
+                        {
+                            Category = "Grocery",
+                            Title = $"Get {i} beers"
+                        };
 
-                    await _repo.AddItemAsync(milk);
-                    await _repo.AddItemAsync(laundry);
+                        await _repo.AddItemAsync(beer);
+
+                    }
 
                 }
             }
