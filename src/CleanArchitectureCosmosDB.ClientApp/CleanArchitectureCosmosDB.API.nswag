@@ -1,5 +1,5 @@
 {
-  "runtime": "NetCore21",
+  "runtime": "NetCore31",
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
@@ -31,7 +31,7 @@
       "wrapDtoExceptions": false,
       "exceptionClass": "ApiException",
       "clientBaseClass": null,
-      "wrapResponses": false,
+      "wrapResponses": true,
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
@@ -68,7 +68,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "Resources.ts",
+      "output": "src/helpers/api/Resources.ts",
       "newLineBehavior": "Auto"
     }
   }
