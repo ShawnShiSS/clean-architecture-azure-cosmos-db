@@ -83,6 +83,7 @@ Prerequisites:
 * Audit container and automatic auditing 
 * NSwagStudio file to generate TypeScript client code 
 * DataTables and Pagination support using LINQ and IQueryable in API
+* Material UI DataTable in React Client App
 * Client side validation using Formik and Yup in React Client App
 * Map and render server-side errors in React Client App
 
