@@ -18,6 +18,7 @@
     "camelcase-keys": "^6.2.2",
     "clsx": "^1.1.1",
     "formik": "^2.2.5",
+    "material-table": "^1.69.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
