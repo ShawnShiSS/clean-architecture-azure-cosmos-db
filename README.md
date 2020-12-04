@@ -89,7 +89,7 @@ Prerequisites:
 
 # New Features Under Development
 * ASP.NET Core Identity  (TODO)
-* Identity Service (TODO)
+* Token Service Provider using Identity (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
 * other TODOs
