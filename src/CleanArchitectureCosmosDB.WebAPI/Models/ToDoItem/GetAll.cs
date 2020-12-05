@@ -45,7 +45,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// </summary>
             public GetAllToDoItemQueryValidator()
             {
-                
+
             }
 
         }
@@ -89,8 +89,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
 
                 //var entities = await _repo.GetItemsAsync($"SELECT * FROM c");
                 // Get all the incompleted todo items
-                var specification = new ToDoItemGetAllSpecification(false);
-                var entities = await _repo.GetItemsAsync(specification);
+                ToDoItemGetAllSpecification specification = new ToDoItemGetAllSpecification(false);
+                IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
                 response.Resource = entities.Select(x => _mapper.Map<ToDoItemModel>(x));
 
                 return response;

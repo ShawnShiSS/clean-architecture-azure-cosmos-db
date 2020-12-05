@@ -119,17 +119,17 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
                 QueryResponse response = new QueryResponse();
 
                 // records
-                var specification = new ToDoItemSearchSpecification(query.TitleFilter,
+                ToDoItemSearchSpecification specification = new ToDoItemSearchSpecification(query.TitleFilter,
                                                                       query.Start,
                                                                       query.PageSize,
                                                                       query.SortColumn,
                                                                       query.SortDirection ?? query.SortDirection.Value);
 
-                var entities = await _repo.GetItemsAsync(specification);
+                IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
                 response.Resource = entities.Select(x => _mapper.Map<ToDoItemModel>(x));
 
                 // count
-                var countSpecification = new ToDoItemSearchAggregationSpecification(query.TitleFilter);
+                ToDoItemSearchAggregationSpecification countSpecification = new ToDoItemSearchAggregationSpecification(query.TitleFilter);
                 response.TotalRecordsMatched = await _repo.GetItemsCountAsync(countSpecification);
 
                 response.CurrentPage = (query.PageSize != 0) ? query.Start / query.PageSize : 0;

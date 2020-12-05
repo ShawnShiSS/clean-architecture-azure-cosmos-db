@@ -30,7 +30,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// </summary>
             public string Title { get; set; }
 
-            
+
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// <returns></returns>
             public async Task<bool> HasUniqueTitle(string title, CancellationToken cancellationToken)
             {
-                var specification = new ToDoItemSearchSpecification(title,
+                ToDoItemSearchSpecification specification = new ToDoItemSearchSpecification(title,
                                                                       exactSearch: true);
 
-                var entities = await _repo.GetItemsAsync(specification);
+                System.Collections.Generic.IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
 
                 return entities == null || entities.Count() == 0;
 

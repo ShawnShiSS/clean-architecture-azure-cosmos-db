@@ -81,10 +81,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// <returns></returns>
             public async Task<bool> HasUniqueName(UpdateCommand command, string title, CancellationToken cancellationToken)
             {
-                var specification = new ToDoItemSearchSpecification(title,
+                ToDoItemSearchSpecification specification = new ToDoItemSearchSpecification(title,
                                                                       exactSearch: true);
 
-                var entities = await _repo.GetItemsAsync(specification);
+                IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
 
                 return entities == null ||
                        entities.Count() == 0 ||

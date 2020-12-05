@@ -62,7 +62,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Bind database-related bindings
-            var cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
+            CosmosDbSettings cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  cosmosDbConfig.PrimaryKey,
@@ -85,7 +85,8 @@ namespace CleanArchitectureCosmosDB.WebAPI
                         // Serilize enum in string
                         options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                     })
-                    .AddFluentValidation(options => {
+                    .AddFluentValidation(options =>
+                    {
                         // In order to register FluentValidation to define Swagger schema
                         // https://github.com/RicoSuter/NSwag/issues/1722#issuecomment-544202504
                         // https://github.com/zymlabs/nswag-fluentvalidation
@@ -94,7 +95,8 @@ namespace CleanArchitectureCosmosDB.WebAPI
                         // Optionally set validator factory if you have problems with scope resolve inside validators.
                         options.ValidatorFactoryType = typeof(HttpContextServiceProviderValidatorFactory);
                     })
-                    .AddMvcOptions(options => {
+                    .AddMvcOptions(options =>
+                    {
                         // Clear the default MVC model validations, as we are registering all model validators using FluentValidation
                         // https://github.com/jasontaylordev/NorthwindTraders/issues/76
                         options.ModelMetadataDetailsProviders.Clear();
@@ -104,28 +106,29 @@ namespace CleanArchitectureCosmosDB.WebAPI
             // NSwag Swagger
             // Add the FluentValidationSchemaProcessor as a singleton
             services.AddSingleton<FluentValidationSchemaProcessor>();
-            services.AddOpenApiDocument((options, serviceProvider) => {
+            services.AddOpenApiDocument((options, serviceProvider) =>
+            {
                 options.DocumentName = "v1";
                 options.Title = "Clean Architecture Cosmos DB API";
                 options.Version = "v1";
-                var fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
+                FluentValidationSchemaProcessor fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
                 // Add the fluent validations schema processor
                 options.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
             });
-            
+
 
             // OData Support
             services.AddOData();
             // In order to make swagger work with OData
             services.AddMvcCore(options =>
             {
-                foreach (var outputFormatter in options.OutputFormatters.OfType<OutputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                foreach (OutputFormatter outputFormatter in options.OutputFormatters.OfType<OutputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
                 {
                     outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
                 }
 
-                foreach (var inputFormatter in options.InputFormatters.OfType<InputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                foreach (InputFormatter inputFormatter in options.InputFormatters.OfType<InputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
                 {
                     inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
                 }

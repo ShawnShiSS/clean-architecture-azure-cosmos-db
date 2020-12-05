@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 {
@@ -65,7 +63,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
         private void HandleUnknownException(ExceptionContext context)
         {
-            var details = new ProblemDetails
+            ProblemDetails details = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,
                 Title = "An error occurred while processing your request.",
@@ -82,9 +80,9 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
         private void HandleValidationException(ExceptionContext context)
         {
-            var exception = context.Exception as ApiModelValidationException;
+            ApiModelValidationException exception = context.Exception as ApiModelValidationException;
 
-            var details = new ValidationProblemDetails(exception.Errors)
+            ValidationProblemDetails details = new ValidationProblemDetails(exception.Errors)
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
             };
@@ -96,7 +94,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
         private void HandleInvalidModelStateException(ExceptionContext context)
         {
-            var details = new ValidationProblemDetails(context.ModelState)
+            ValidationProblemDetails details = new ValidationProblemDetails(context.ModelState)
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
             };
@@ -108,9 +106,9 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
         private void HandleNotFoundException(ExceptionContext context)
         {
-            var exception = context.Exception as EntityNotFoundException;
+            EntityNotFoundException exception = context.Exception as EntityNotFoundException;
 
-            var details = new ProblemDetails()
+            ProblemDetails details = new ProblemDetails()
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",
