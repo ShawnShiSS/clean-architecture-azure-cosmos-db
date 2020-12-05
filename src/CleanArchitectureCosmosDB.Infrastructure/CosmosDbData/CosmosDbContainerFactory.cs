@@ -43,7 +43,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData
         {
             Microsoft.Azure.Cosmos.DatabaseResponse database = await _cosmosClient.CreateDatabaseIfNotExistsAsync(_databaseName);
 
-            foreach (var container in _containers)
+            foreach (ContainerInfo container in _containers)
             {
                 await database.Database.CreateContainerIfNotExistsAsync(container.Name, $"{container.PartitionKey}");
             }

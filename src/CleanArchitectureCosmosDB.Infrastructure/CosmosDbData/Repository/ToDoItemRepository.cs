@@ -4,7 +4,6 @@ using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
@@ -45,7 +44,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
                                                     .WithParameter("@Category", category);
             string queryString = queryDefinition.ToString();
 
-            var entities = await this.GetItemsAsync(queryString);
+            IEnumerable<ToDoItem> entities = await this.GetItemsAsync(queryString);
 
             return results;
         }
@@ -61,7 +60,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
                                                     .WithParameter("@Title", title);
             string queryString = queryDefinition.ToString();
 
-            var entities = await this.GetItemsAsync(queryString);
+            IEnumerable<ToDoItem> entities = await this.GetItemsAsync(queryString);
 
             return results;
         }
