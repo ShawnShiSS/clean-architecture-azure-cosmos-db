@@ -23,7 +23,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
                                                      List<ContainerInfo> containers)
         {
             Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(endpointUrl, primaryKey);
-            var cosmosDbClientFactory = new CosmosDbContainerFactory(client, databaseName, containers);
+            CosmosDbContainerFactory cosmosDbClientFactory = new CosmosDbContainerFactory(client, databaseName, containers);
 
             services.AddSingleton<ICosmosDbContainerFactory>(cosmosDbClientFactory);
 
