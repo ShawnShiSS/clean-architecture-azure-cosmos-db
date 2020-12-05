@@ -38,7 +38,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {
-            var response = await _mediator.Send(new GetAll.GetAllQuery());
+            GetAll.QueryResponse response = await _mediator.Send(new GetAll.GetAllQuery());
             return response.Resource;
         }
 
@@ -52,7 +52,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<ToDoItemModel>> Get(string id)
         {
-            var response = await _mediator.Send(new Get.GetQuery() { Id = id });
+            Get.QueryResponse response = await _mediator.Send(new Get.GetQuery() { Id = id });
 
             return response.Resource;
         }
@@ -67,7 +67,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Create))]
         public async Task<IActionResult> Create([FromBody] Create.CreateToDoItemCommand command)
         {
-            var response = await _mediator.Send(command);
+            Create.CommandResponse response = await _mediator.Send(command);
             return CreatedAtRoute("GetToDoItem", new { id = response.Id }, null);
         }
 
@@ -87,7 +87,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
                 return BadRequest();
             }
 
-            var response = await _mediator.Send(command);
+            Update.CommandResponse response = await _mediator.Send(command);
 
             return NoContent();
         }
@@ -117,7 +117,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<WebAPI.Models.ToDoItem.ToDoItemAuditModel>> GetAuditHistory(string id)
         {
-            var response = await _mediator.Send(new GetAuditHistory.GetQuery() { Id = id });
+            GetAuditHistory.QueryResponse response = await _mediator.Send(new GetAuditHistory.GetQuery() { Id = id });
 
             return response.Resource;
         }
@@ -133,8 +133,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status200OK)]
         public async Task<DataTablesResponse> Search(Search.SearchToDoItemQuery query)
         {
-            var response = await _mediator.Send(query);
-            var result = new DataTablesResponse()
+            Search.QueryResponse response = await _mediator.Send(query);
+            DataTablesResponse result = new DataTablesResponse()
             {
                 Data = response.Resource,
                 TotalRecords = response.TotalRecordsMatched,
