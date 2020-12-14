@@ -76,10 +76,9 @@ Prerequisites:
 * CRUD endpoints using Cosmos DB
 * Cosmos DB point-read using partition key and ID
 * Cosmos DB single-partition read and cross-partition read
-* Search data in Cosmos DB using SQL query directly (demonstration purpose, not recommended in production)
-* Search data in Cosmos DB using Parameterized Query
-* Search data in Cosmos DB using LINQ and IQueryable
-* Search data in Cosmos DB using Specification Pattern to abstract out query-specific logic
+* Cosmos DB SQL query (demonstration purpose, not recommended in production)
+* Cosmos DB query with Parameterized Query, LINQ and IQueryable
+* Cosmos DB data searching using Specification Pattern to abstract out query-specific logic
 * Audit container and automatic auditing 
 * NSwagStudio file to generate TypeScript client code 
 * DataTables and Pagination support using LINQ and IQueryable in API
