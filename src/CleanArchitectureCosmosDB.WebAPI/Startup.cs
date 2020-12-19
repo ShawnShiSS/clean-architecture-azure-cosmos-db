@@ -1,9 +1,11 @@
 using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Core.Interfaces.Persistence;
+using CleanArchitectureCosmosDB.Core.Interfaces.Storage;
 using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
+using CleanArchitectureCosmosDB.Infrastructure.Services;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services;
 using FluentValidation;
@@ -18,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
+using Storage.Net;
 using System;
 using System.IO;
 using System.Linq;
@@ -114,6 +117,16 @@ namespace CleanArchitectureCosmosDB.WebAPI
                     inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
                 }
             });
+
+            // Storage
+            StorageFactory.Modules.UseAzureBlobStorage();
+
+            // Register IBlobStorage, which is used in AzureBlobStorageService
+            // Avoid using IBlobStorage directly outside of AzureBlobStorageService.
+            services.AddScoped<Storage.Net.Blobs.IBlobStorage>(
+                factory => StorageFactory.Blobs.FromConnectionString(Configuration.GetConnectionString("StorageConnectionString")));
+
+            services.AddScoped<IStorageService, AzureBlobStorageService>();
         }
 
         /// <summary>
