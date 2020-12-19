@@ -6,12 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Interfaces\Storage\" />
   </ItemGroup>
 
 </Project>

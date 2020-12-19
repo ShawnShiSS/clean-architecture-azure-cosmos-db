@@ -10,6 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.9" />
     <PackageReference Include="SendGrid" Version="9.21.0" />
+    <PackageReference Include="Storage.Net" Version="9.2.7" />
+    <PackageReference Include="Storage.Net.Microsoft.Azure.Storage.Blobs" Version="9.2.7" />
   </ItemGroup>
 
   <ItemGroup>
