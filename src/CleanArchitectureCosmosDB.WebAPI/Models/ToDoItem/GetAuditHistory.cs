@@ -86,8 +86,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             {
                 QueryResponse response = new QueryResponse();
 
-                var specification = new AuditFilterSpecification(query.Id);
-                var entities = await _repo.GetItemsAsync(specification);
+                AuditFilterSpecification specification = new AuditFilterSpecification(query.Id);
+                IEnumerable<Core.Entities.Audit> entities = await _repo.GetItemsAsync(specification);
 
                 // Map audit records to entity-specific audit model
                 response.Resource = entities.Select(x => _mapper.Map<ToDoItemAuditModel>(x));

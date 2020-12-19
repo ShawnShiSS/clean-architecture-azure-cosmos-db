@@ -1,7 +1,4 @@
 ﻿using CleanArchitectureCosmosDB.Core.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitectureCosmosDB.Core.Entities
 {
@@ -15,7 +12,7 @@ namespace CleanArchitectureCosmosDB.Core.Entities
         ///     Title of the To-Do-Item
         /// </summary>
         public string Title { get; set; }
-        
+
         /// <summary>
         ///     Whether the To-Do-Item is done
         /// </summary>

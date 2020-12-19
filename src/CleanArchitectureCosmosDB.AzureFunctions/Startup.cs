@@ -24,7 +24,7 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
         public void ConfigureServices(IServiceCollection services)
         {
             // Configurations
-            var configuration = new ConfigurationBuilder()
+            IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"local.settings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
@@ -40,7 +40,7 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
             //services.AddLogging();
 
             // configure serilog
-            var logger = new LoggerConfiguration()
+            Serilog.Core.Logger logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
                 .WriteTo.File("C:\\Logs\\AzureFunctions.Starter\\log-StaterFunction.txt", rollingInterval: RollingInterval.Day)
@@ -51,7 +51,7 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
             services.AddScoped<IEmailService, SendGridEmailService>();
 
             // Bind database-related bindings
-            var cosmosDbConfig = configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
+            CosmosDbSettings cosmosDbConfig = configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  cosmosDbConfig.PrimaryKey,

@@ -35,7 +35,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.ApiExceptions
             }
             catch (Exception ex)
             {
-                var requestName = typeof(TRequest).Name;
+                string requestName = typeof(TRequest).Name;
 
                 Log.Error(ex, "Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
 

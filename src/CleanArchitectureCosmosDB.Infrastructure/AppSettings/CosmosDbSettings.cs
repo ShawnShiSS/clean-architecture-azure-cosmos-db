@@ -21,7 +21,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.AppSettings
         ///     List of containers in the database
         /// </summary>
         public List<ContainerInfo> Containers { get; set; }
-                
+
     }
     public class ContainerInfo
     {

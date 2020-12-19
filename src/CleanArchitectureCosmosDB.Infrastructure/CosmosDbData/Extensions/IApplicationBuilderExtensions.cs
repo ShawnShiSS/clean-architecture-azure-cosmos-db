@@ -1,13 +1,11 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Azure.Cosmos;
-using Microsoft.Extensions.DependencyInjection;
-using CleanArchitectureCosmosDB.Core.Entities;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System;
+﻿using CleanArchitectureCosmosDB.Core.Entities;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
 {
@@ -22,9 +20,9 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
         /// <param name="builder"></param>
         public static void EnsureCosmosDbIsCreated(this IApplicationBuilder builder)
         {
-            using (var serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (IServiceScope serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var factory = serviceScope.ServiceProvider.GetService<ICosmosDbContainerFactory>();
+                ICosmosDbContainerFactory factory = serviceScope.ServiceProvider.GetService<ICosmosDbContainerFactory>();
 
                 factory.EnsureDbSetupAsync().Wait();
 
@@ -38,34 +36,27 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
         /// <returns></returns>
         public static async Task SeedToDoContainerIfEmptyAsync(this IApplicationBuilder builder)
         {
-            using (var serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (IServiceScope serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var _repo = serviceScope.ServiceProvider.GetService<IToDoItemRepository>();
+                IToDoItemRepository _repo = serviceScope.ServiceProvider.GetService<IToDoItemRepository>();
 
                 // Check if empty
-                var sqlQueryText = "SELECT * FROM c";
-                var todos = await _repo.GetItemsAsync(sqlQueryText);
+                string sqlQueryText = "SELECT * FROM c";
+                IEnumerable<ToDoItem> todos = await _repo.GetItemsAsync(sqlQueryText);
 
                 if (todos.Count() == 0)
                 {
-                    ToDoItem milk = new ToDoItem()
+                    for (int i = 0; i < 100; i++)
                     {
-                        Category = "Grocery",
-                        Title = "Get more milk"
-                    };
-                    ToDoItem beer = new ToDoItem()
-                    {
-                        Category = "Grocery",
-                        Title = "Get 7 beers"
-                    };
-                    ToDoItem laundry = new ToDoItem()
-                    {
-                        Category = "Household",
-                        Title = "Do laundry"
-                    };
+                        ToDoItem beer = new ToDoItem()
+                        {
+                            Category = "Grocery",
+                            Title = $"Get {i} beers"
+                        };
 
-                    await _repo.AddItemAsync(milk);
-                    await _repo.AddItemAsync(laundry);
+                        await _repo.AddItemAsync(beer);
+
+                    }
 
                 }
             }

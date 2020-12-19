@@ -25,6 +25,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using ZymLabs.NSwag.FluentValidation;
+using ZymLabs.NSwag.FluentValidation.AspNetCore;
 
 namespace CleanArchitectureCosmosDB.WebAPI
 {
@@ -53,6 +55,9 @@ namespace CleanArchitectureCosmosDB.WebAPI
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // HttpContextServiceProviderValidatorFactory requires access to HttpContext
+            services.AddHttpContextAccessor();
+
             // AutoMapper, this will scan and register everything that inherits AutoMapper.Profile
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             // MediatR, this will scan and register everything that inherits IRequest, IPipelineBehavior
@@ -60,10 +65,10 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.Behaviours.ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.ApiExceptions.UnhandledExceptionBehaviour<,>));
             // Fluent Validation, this will scan and register everything that inherits FluentValidation.AbstractValidator
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Bind database-related bindings
-            var cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
+            CosmosDbSettings cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  cosmosDbConfig.PrimaryKey,
@@ -81,38 +86,55 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.AddControllers(options =>
                         // handle exceptions thrown by an action
                         options.Filters.Add(new ApiExceptionFilterAttribute()))
-                    .AddNewtonsoftJson()
-                    .AddFluentValidation()
-                    .AddMvcOptions(options => {
+                    .AddNewtonsoftJson(options =>
+                    {
+                        // Serilize enum in string
+                        options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                    })
+                    .AddFluentValidation(options =>
+                    {
+                        // In order to register FluentValidation to define Swagger schema
+                        // https://github.com/RicoSuter/NSwag/issues/1722#issuecomment-544202504
+                        // https://github.com/zymlabs/nswag-fluentvalidation
+                        options.RegisterValidatorsFromAssemblyContaining<Startup>();
+
+                        // Optionally set validator factory if you have problems with scope resolve inside validators.
+                        options.ValidatorFactoryType = typeof(HttpContextServiceProviderValidatorFactory);
+                    })
+                    .AddMvcOptions(options =>
+                    {
                         // Clear the default MVC model validations, as we are registering all model validators using FluentValidation
+                        // https://github.com/jasontaylordev/NorthwindTraders/issues/76
                         options.ModelMetadataDetailsProviders.Clear();
                         options.ModelValidatorProviders.Clear();
                     });
 
-            // swagger
-            services.AddSwaggerGen(options =>
+            // NSwag Swagger
+            // Add the FluentValidationSchemaProcessor as a singleton
+            services.AddSingleton<FluentValidationSchemaProcessor>();
+            services.AddOpenApiDocument((options, serviceProvider) =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Clean Architecture API", Version = "v1" });
+                options.DocumentName = "v1";
+                options.Title = "Clean Architecture Cosmos DB API";
+                options.Version = "v1";
+                FluentValidationSchemaProcessor fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
+                // Add the fluent validations schema processor
+                options.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
-                // Get xml comments path
-                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
-                // Set xml path
-                options.IncludeXmlComments(xmlPath);
             });
+
 
             // OData Support
             services.AddOData();
             // In order to make swagger work with OData
             services.AddMvcCore(options =>
             {
-                foreach (var outputFormatter in options.OutputFormatters.OfType<OutputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                foreach (OutputFormatter outputFormatter in options.OutputFormatters.OfType<OutputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
                 {
                     outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
                 }
 
-                foreach (var inputFormatter in options.InputFormatters.OfType<InputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
+                foreach (InputFormatter inputFormatter in options.InputFormatters.OfType<InputFormatter>().Where(x => x.SupportedMediaTypes.Count == 0))
                 {
                     inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
                 }
@@ -145,13 +167,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
                 app.SeedToDoContainerIfEmptyAsync().Wait();
             }
 
-            // Swagger UI page at /swagger
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clean Architecture API V1");
-            });
+            // NSwag Swagger
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();

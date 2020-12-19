@@ -102,11 +102,11 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         // String can also be hard to work with due to special characters and spaces when advanced querying like search and pagination is required.
         public async Task<IEnumerable<T>> GetItemsAsync(string queryString)
         {
-            var resultSetIterator = _container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
+            FeedIterator<T> resultSetIterator = _container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
             List<T> results = new List<T>();
             while (resultSetIterator.HasMoreResults)
             {
-                var response = await resultSetIterator.ReadNextAsync();
+                FeedResponse<T> response = await resultSetIterator.ReadNextAsync();
 
                 results.AddRange(response.ToList());
             }
@@ -117,18 +117,25 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <inheritdoc cref="IRepository{T}.GetItemsAsync(Ardalis.Specification.ISpecification{T})"/>
         public async Task<IEnumerable<T>> GetItemsAsync(ISpecification<T> specification)
         {
-            var queryable = ApplySpecification(specification);
-            var iterator = queryable.ToFeedIterator<T>();
+            IQueryable<T> queryable = ApplySpecification(specification);
+            FeedIterator<T> iterator = queryable.ToFeedIterator<T>();
 
             List<T> results = new List<T>();
             while (iterator.HasMoreResults)
             {
-                var response = await iterator.ReadNextAsync();
+                FeedResponse<T> response = await iterator.ReadNextAsync();
 
                 results.AddRange(response.ToList());
             }
 
             return results;
+        }
+
+        /// <inheritdoc cref="IRepository{T}.GetItemsCountAsync(ISpecification{T})"/>
+        public async Task<int> GetItemsCountAsync(ISpecification<T> specification)
+        {
+            IQueryable<T> queryable = ApplySpecification(specification);
+            return await queryable.CountAsync();
         }
 
         public async Task UpdateItemAsync(string id, T item)
@@ -146,7 +153,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <returns></returns>
         private IQueryable<T> ApplySpecification(ISpecification<T> specification)
         {
-            var evaluator = new CosmosDbSpecificationEvaluator<T>();
+            CosmosDbSpecificationEvaluator<T> evaluator = new CosmosDbSpecificationEvaluator<T>();
             return evaluator.GetQuery(_container.GetItemLinqQueryable<T>(), specification);
         }
 
@@ -157,7 +164,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <returns></returns>
         private async Task Audit(T item)
         {
-            var auditItem = new Core.Entities.Audit(item.GetType().Name,
+            Audit auditItem = new Core.Entities.Audit(item.GetType().Name,
                                                     item.Id,
                                                     Newtonsoft.Json.JsonConvert.SerializeObject(item));
             auditItem.Id = GenerateAuditId(auditItem);

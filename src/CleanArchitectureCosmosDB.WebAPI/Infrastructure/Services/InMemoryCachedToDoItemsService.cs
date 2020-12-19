@@ -52,7 +52,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services
         public void SetCachedToDoItems(IEnumerable<ToDoItem> entry)
         {
             // Set cache options
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
+            MemoryCacheEntryOptions cacheEntryOptions = new MemoryCacheEntryOptions()
                 // Keep in cache for this time, reset time if accessed.
                 .SetSlidingExpiration(TimeSpan.FromDays(1));
 

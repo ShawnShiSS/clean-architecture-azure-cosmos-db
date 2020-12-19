@@ -17,7 +17,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Model to Delete an entity
         /// </summary>
-        public class DeleteCommand : IRequest<CommandResponse>
+        public class DeleteToDoItemCommand : IRequest<CommandResponse>
         {
             /// <summary>
             ///     Id
@@ -36,7 +36,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Register Validation 
         /// </summary>
-        public class DeleteToDoItemCommandValidator : AbstractValidator<DeleteCommand>
+        public class DeleteToDoItemCommandValidator : AbstractValidator<DeleteToDoItemCommand>
         {
             /// <summary>
             ///     Validator ctor
@@ -53,7 +53,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Handler
         /// </summary>
-        public class CommandHandler : IRequestHandler<DeleteCommand, CommandResponse>
+        public class CommandHandler : IRequestHandler<DeleteToDoItemCommand, CommandResponse>
         {
             private readonly IToDoItemRepository _repo;
             private readonly IMapper _mapper;
@@ -76,7 +76,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// <param name="command"></param>
             /// <param name="cancellationToken"></param>
             /// <returns></returns>
-            public async Task<CommandResponse> Handle(DeleteCommand command, CancellationToken cancellationToken)
+            public async Task<CommandResponse> Handle(DeleteToDoItemCommand command, CancellationToken cancellationToken)
             {
                 CommandResponse response = new CommandResponse();
 

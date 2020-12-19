@@ -31,8 +31,8 @@ namespace CleanArchitectureCosmosDB.AzureFunctions
             _log.LogInformation($"StarterFunction Timer trigger function executed at: {DateTime.Now}");
 
             // Example code to retrieve all ToDoItems and email "noreply@noreply.com" when time trigger is hit.
-            var specification = new ToDoItemSearchSpecification(false);
-            var entities = await _repo.GetItemsAsync(specification);
+            ToDoItemGetAllSpecification specification = new ToDoItemGetAllSpecification(false);
+            System.Collections.Generic.IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
 
             string messageBody = JsonSerializer.Serialize(entities);
 

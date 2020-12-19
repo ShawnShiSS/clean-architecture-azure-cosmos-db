@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using CleanArchitectureCosmosDB.Core.Interfaces;
+using CleanArchitectureCosmosDB.Core.Specifications;
 using FluentValidation;
 using MediatR;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +18,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Model to create an entity
         /// </summary>
-        public class CreateCommand : IRequest<CommandResponse>
+        public class CreateToDoItemCommand : IRequest<CommandResponse>
         {
             /// <summary>
             ///     Category
@@ -28,7 +30,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// </summary>
             public string Title { get; set; }
 
-            
+
         }
 
         /// <summary>
@@ -45,27 +47,49 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
         /// <summary>
         ///     Register Validation 
         /// </summary>
-        public class CreateToDoItemCommandValidator : AbstractValidator<CreateCommand>
+        public class CreateToDoItemCommandValidator : AbstractValidator<CreateToDoItemCommand>
         {
+            private readonly IToDoItemRepository _repo;
+
             /// <summary>
             ///     Validator ctor
             /// </summary>
-            public CreateToDoItemCommandValidator()
+            public CreateToDoItemCommandValidator(IToDoItemRepository repo)
             {
+                this._repo = repo ?? throw new ArgumentNullException(nameof(repo));
+
                 RuleFor(x => x.Category)
                     .NotEmpty();
                 RuleFor(x => x.Title)
-                    .NotEmpty();
+                    .Cascade(CascadeMode.Stop)
+                    .NotEmpty()
+                    .MustAsync(HasUniqueTitle).WithMessage("Title must be unique");
 
             }
 
+            /// <summary>
+            ///     Check uniqueness
+            /// </summary>
+            /// <param name="title"></param>
+            /// <param name="cancellationToken"></param>
+            /// <returns></returns>
+            public async Task<bool> HasUniqueTitle(string title, CancellationToken cancellationToken)
+            {
+                ToDoItemSearchSpecification specification = new ToDoItemSearchSpecification(title,
+                                                                      exactSearch: true);
+
+                System.Collections.Generic.IEnumerable<Core.Entities.ToDoItem> entities = await _repo.GetItemsAsync(specification);
+
+                return entities == null || entities.Count() == 0;
+
+            }
         }
 
 
         /// <summary>
         ///     Handler
         /// </summary>
-        public class CommandHandler : IRequestHandler<CreateCommand, CommandResponse>
+        public class CommandHandler : IRequestHandler<CreateToDoItemCommand, CommandResponse>
         {
             private readonly IToDoItemRepository _repo;
             private readonly IMapper _mapper;
@@ -88,7 +112,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem
             /// <param name="command"></param>
             /// <param name="cancellationToken"></param>
             /// <returns></returns>
-            public async Task<CommandResponse> Handle(CreateCommand command, CancellationToken cancellationToken)
+            public async Task<CommandResponse> Handle(CreateToDoItemCommand command, CancellationToken cancellationToken)
             {
                 CommandResponse response = new CommandResponse();
                 Core.Entities.ToDoItem entity = _mapper.Map<Core.Entities.ToDoItem>(command);

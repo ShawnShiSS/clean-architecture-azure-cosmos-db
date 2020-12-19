@@ -64,5 +64,5 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Services
         }
     }
 
-    
+
 }
