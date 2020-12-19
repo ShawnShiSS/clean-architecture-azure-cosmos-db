@@ -92,6 +92,7 @@ Prerequisites:
 * Refresh Token (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Azure Blob Storage (TODO)
 * other TODOs
 
 # Additional Resources
