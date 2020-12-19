@@ -80,6 +80,7 @@ Prerequisites:
 * Cosmos DB query with Parameterized Query, LINQ and IQueryable
 * Cosmos DB data searching using Specification Pattern to abstract out query-specific logic
 * Audit container and automatic auditing 
+* Storage service for uploading and downloading files from cloud storage, e.g. Azure Blob Storage 
 * NSwagStudio file to generate TypeScript client code 
 * DataTables and Pagination support using LINQ and IQueryable in API
 * Material UI DataTable in React Client App
@@ -92,7 +93,6 @@ Prerequisites:
 * Refresh Token (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
-* Azure Blob Storage (TODO)
 * other TODOs
 
 # Additional Resources
