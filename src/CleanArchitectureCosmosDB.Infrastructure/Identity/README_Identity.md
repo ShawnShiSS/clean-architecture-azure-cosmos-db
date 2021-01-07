@@ -1,0 +1,1 @@
+﻿# ASP.NET Core Identity is used to provide token service and user management service.
