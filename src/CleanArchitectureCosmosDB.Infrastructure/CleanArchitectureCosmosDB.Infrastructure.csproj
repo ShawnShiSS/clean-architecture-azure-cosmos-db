@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CleanArchitectureCosmosDB.Core\CleanArchitectureCosmosDB.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Identity\Migrations\" />
+  </ItemGroup>
+
 </Project>
