@@ -1,4 +1,5 @@
-﻿using CleanArchitectureCosmosDB.WebAPI.Models.Shared;
+﻿using CleanArchitectureCosmosDB.Core.Exceptions;
+using CleanArchitectureCosmosDB.WebAPI.Models.Shared;
 using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
 using MediatR;
 using Microsoft.AspNet.OData;
@@ -55,6 +56,18 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
             Get.QueryResponse response = await _mediator.Send(new Get.GetQuery() { Id = id });
 
             return response.Resource;
+        }
+
+        // GET: api/ToDoItem/TestException
+        /// <summary>
+        ///     Get a test exception
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetTestException")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public Task<IActionResult> GetTestException()
+        {
+            throw new EntityAlreadyExistsException();
         }
 
         // POST: api/ToDoItem
