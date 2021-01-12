@@ -25,8 +25,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-                { typeof(ApiModelValidationException), HandleValidationException },
                 { typeof(EntityNotFoundException), HandleNotFoundException },
+                { typeof(EntityAlreadyExistsException), HandleAlreadyExistsException },
             };
         }
 
@@ -112,6 +112,22 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",
+                Detail = exception.Message
+            };
+
+            context.Result = new NotFoundObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleAlreadyExistsException(ExceptionContext context)
+        {
+            EntityAlreadyExistsException exception = context.Exception as EntityAlreadyExistsException;
+
+            ProblemDetails details = new ProblemDetails()
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                Title = "The specified resource already exists.",
                 Detail = exception.Message
             };
 
