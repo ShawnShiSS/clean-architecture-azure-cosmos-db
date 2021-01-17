@@ -56,8 +56,14 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
         /// <returns></returns>
         public virtual PartitionKey ResolveAuditPartitionKey(string entityId) => new PartitionKey($"{entityId.Split(':')[0]}:{entityId.Split(':')[1]}");
 
-
+        /// <summary>
+        ///     Cosmos DB factory
+        /// </summary>
         private readonly ICosmosDbContainerFactory _cosmosDbContainerFactory;
+
+        /// <summary>
+        ///     Cosmos DB container
+        /// </summary>
         private readonly Microsoft.Azure.Cosmos.Container _container;
         /// <summary>
         ///     Audit container that will store audit log for all entities.
