@@ -10,6 +10,9 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData
 {
     public class CosmosDbContainerFactory : ICosmosDbContainerFactory
     {
+        /// <summary>
+        ///     Azure Cosmos DB Client
+        /// </summary>
         private readonly CosmosClient _cosmosClient;
         private readonly string _databaseName;
         private readonly List<ContainerInfo> _containers;
