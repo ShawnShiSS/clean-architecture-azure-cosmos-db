@@ -108,6 +108,7 @@ I have published some short articles to cover different aspects of this project.
 * [Mapping and Displaying Server-Side Errors with Formik in React](https://shawn-shi.medium.com/mapping-and-displaying-server-side-errors-with-formik-in-react-bbe7ae696895)
 * [Partitioning Best Practice in Partitioned Repository Pattern with Cosmos DB](https://shawn-shi.medium.com/partition-key-design-best-practice-in-partitioned-repository-pattern-with-cosmos-db-ef9318007fc1)
 * [Best Exception Handling with Consistent Responses in ASP.NET Core API](https://medium.com/swlh/clean-architecture-best-exception-handling-with-consistent-responses-in-asp-net-core-api-b22b07a08e38)
+* Serilog File Sink with Azure App Service (TODO)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 
 # Acknowledgement
