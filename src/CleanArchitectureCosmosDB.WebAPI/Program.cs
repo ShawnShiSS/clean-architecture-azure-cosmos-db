@@ -65,7 +65,9 @@ namespace CleanArchitectureCosmosDB.WebAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseConfiguration(Configuration)
+                    .UseSerilog(); ;
                 });
     }
 }
