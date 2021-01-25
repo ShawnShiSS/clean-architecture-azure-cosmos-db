@@ -25,7 +25,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
                 ICosmosDbContainerFactory factory = serviceScope.ServiceProvider.GetService<ICosmosDbContainerFactory>();
 
                 factory.EnsureDbSetupAsync().Wait();
-
             }
         }
 
@@ -55,12 +54,9 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
                         };
 
                         await _repo.AddItemAsync(beer);
-
                     }
-
                 }
             }
-
         }
     }
 }
