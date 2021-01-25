@@ -109,6 +109,7 @@ I have published some short articles to cover different aspects of this project.
 * [Partitioning Best Practice in Partitioned Repository Pattern with Cosmos DB](https://shawn-shi.medium.com/partition-key-design-best-practice-in-partitioned-repository-pattern-with-cosmos-db-ef9318007fc1)
 * [Best Exception Handling with Consistent Responses in ASP.NET Core API](https://medium.com/swlh/clean-architecture-best-exception-handling-with-consistent-responses-in-asp-net-core-api-b22b07a08e38)
 * [Best Design Pattern for Azure Cosmos DB Containers — Factory Pattern](https://medium.com/swlh/best-design-pattern-for-azure-cosmos-db-containers-factory-pattern-addff5628f8a)
+* How to Auto-create Cosmos DB Database and Containers on App Startup (TODO)
 * Serilog File Sink with Azure App Service (TODO)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 
