@@ -113,6 +113,9 @@ I have published some short articles to cover different aspects of this project.
 * [Proper Use of Serilog for Log Stream and Filesystem on Azure App Service](https://shawn-shi.medium.com/proper-use-of-serilog-for-log-stream-and-filesystem-on-azure-app-service-a69e17e54b7b)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 
+# React SPA 
+* Typescript generation using NSwag Studio based on the Open API specification (Swagger)
+
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
 
