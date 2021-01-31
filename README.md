@@ -115,6 +115,8 @@ I have published some short articles to cover different aspects of this project.
 
 # React SPA 
 * Typescript generation using NSwag Studio based on the Open API specification (Swagger)
+* Material UI DataTable with server side processing
+* (TODO) Upload and download attachment from Azure Blob Storage
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
