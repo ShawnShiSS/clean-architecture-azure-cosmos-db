@@ -111,6 +111,7 @@ I have published some short articles to cover different aspects of this project.
 * [Best Design Pattern for Azure Cosmos DB Containers — Factory Pattern](https://medium.com/swlh/best-design-pattern-for-azure-cosmos-db-containers-factory-pattern-addff5628f8a)
 * [How to Auto-create Cosmos DB Database and Containers on App Startup](https://medium.com/swlh/clean-architecture-how-to-auto-create-cosmos-db-database-and-containers-on-app-startup-9dedb6e7adad)
 * [Proper Use of Serilog for Log Stream and Filesystem on Azure App Service](https://shawn-shi.medium.com/proper-use-of-serilog-for-log-stream-and-filesystem-on-azure-app-service-a69e17e54b7b)
+* [Plug-n-Play Azure Blob Storage Service into API using ASP.NET Core in 3 Quick Steps](https://medium.com/swlh/plug-n-play-azure-blob-storage-service-into-api-in-3-quick-steps-468cf39821c6)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 
 # React SPA 
