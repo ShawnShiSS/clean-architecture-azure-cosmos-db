@@ -86,6 +86,7 @@ Prerequisites:
 * Material UI DataTable in React Client App
 * Client side validation using Formik and Yup in React Client App
 * Map and render server-side errors in React Client App
+* Unit Test using xUnit
 
 # New Features Under Development
 * ASP.NET Core Identity  (TODO)
