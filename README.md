@@ -24,7 +24,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
 
 # Give a star
-:star: If you enjoy this project, or are using this project to start your exciting new project, please give it a star. Thanks! :star: 
+:star: If you enjoy this project, or are using this project to start your exciting new project, or are just forking it to play, please give it a star. Much appreciated! :star: 
 
 # Goals
 The primary goal of the project is to provide a basic solution structure for anyone who is building a new ASP.NET Core web or API project using Cosmos DB.
@@ -107,7 +107,17 @@ I have published some short articles to cover different aspects of this project.
 * [How to Generate API Client Code Using NSwag With FluentValidation Rules](https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
 * [Mapping and Displaying Server-Side Errors with Formik in React](https://shawn-shi.medium.com/mapping-and-displaying-server-side-errors-with-formik-in-react-bbe7ae696895)
 * [Partitioning Best Practice in Partitioned Repository Pattern with Cosmos DB](https://shawn-shi.medium.com/partition-key-design-best-practice-in-partitioned-repository-pattern-with-cosmos-db-ef9318007fc1)
+* [Best Exception Handling with Consistent Responses in ASP.NET Core API](https://medium.com/swlh/clean-architecture-best-exception-handling-with-consistent-responses-in-asp-net-core-api-b22b07a08e38)
+* [Best Design Pattern for Azure Cosmos DB Containers — Factory Pattern](https://medium.com/swlh/best-design-pattern-for-azure-cosmos-db-containers-factory-pattern-addff5628f8a)
+* [How to Auto-create Cosmos DB Database and Containers on App Startup](https://medium.com/swlh/clean-architecture-how-to-auto-create-cosmos-db-database-and-containers-on-app-startup-9dedb6e7adad)
+* [Proper Use of Serilog for Log Stream and Filesystem on Azure App Service](https://shawn-shi.medium.com/proper-use-of-serilog-for-log-stream-and-filesystem-on-azure-app-service-a69e17e54b7b)
+* [Plug-n-Play Azure Blob Storage Service into API using ASP.NET Core in 3 Quick Steps](https://medium.com/swlh/plug-n-play-azure-blob-storage-service-into-api-in-3-quick-steps-468cf39821c6)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
+
+# React SPA 
+* Typescript generation using NSwag Studio based on the Open API specification (Swagger)
+* Material UI DataTable with server side processing
+* (TODO) Upload and download attachment from Azure Blob Storage
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
