@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureCosmosDB.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureCosmosDB.WebAPI", "src\CleanArchitectureCosmosDB.WebAPI\CleanArchitectureCosmosDB.WebAPI.csproj", "{5592E51D-BD9E-4467-AB00-ADAD174F7BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureCosmosDB.AzureFunctions", "src\CleanArchitectureCosmosDB.AzureFunctions\CleanArchitectureCosmosDB.AzureFunctions.csproj", "{3722E536-1041-4CAB-8449-F343455C4F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureCosmosDB.AzureFunctions", "src\CleanArchitectureCosmosDB.AzureFunctions\CleanArchitectureCosmosDB.AzureFunctions.csproj", "{3722E536-1041-4CAB-8449-F343455C4F5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6BDAAFF8-8055-41CE-A72C-B37E01E7A84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureCosmosDB.UnitTests", "tests\CleanArchitectureCosmosDB.UnitTests\CleanArchitectureCosmosDB.UnitTests.csproj", "{910599EC-D9FB-40DD-A9B7-55AB3264D227}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{3722E536-1041-4CAB-8449-F343455C4F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3722E536-1041-4CAB-8449-F343455C4F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3722E536-1041-4CAB-8449-F343455C4F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910599EC-D9FB-40DD-A9B7-55AB3264D227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910599EC-D9FB-40DD-A9B7-55AB3264D227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910599EC-D9FB-40DD-A9B7-55AB3264D227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910599EC-D9FB-40DD-A9B7-55AB3264D227}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{910599EC-D9FB-40DD-A9B7-55AB3264D227} = {6BDAAFF8-8055-41CE-A72C-B37E01E7A84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7EE11AF-6FED-48CD-A304-7C7B160285AA}
