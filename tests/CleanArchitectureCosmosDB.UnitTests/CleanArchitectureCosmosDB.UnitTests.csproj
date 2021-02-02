@@ -13,4 +13,12 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CleanArchitectureCosmosDB.Core\CleanArchitectureCosmosDB.Core.csproj" />
+  </ItemGroup>
+
 </Project>
