@@ -94,6 +94,7 @@ Prerequisites:
 * Refresh Token (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Complex search specification for Cosmos DB (TODO)
 * other TODOs
 
 # Additional Resources
