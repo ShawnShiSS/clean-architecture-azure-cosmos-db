@@ -95,6 +95,7 @@ Prerequisites:
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
 * Complex search specification for Cosmos DB (TODO)
+* Message Queue (TODO)
 * other TODOs
 
 # Additional Resources
