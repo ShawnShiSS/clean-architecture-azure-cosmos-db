@@ -3,7 +3,7 @@ This solution provides a starting point to build a web API to work with Azure Co
 * Partition key is also implemented through the repository pattern in order to support large scale Cosmos DB.
 * A RESTful API application is created with popular architecture features (see full list below).
 
-Clean Architecture is promoted by Microsoft on their .NET application architecture guide page. The e-book written by Steve "ardalis" Smith ([@ardalis](https://github.com/ardalis)) is beautifully written and well explains the beauty and benefits of using Clean Architecture. For more details, please see [**Architect Modern Web Applications with ASP.NET Core and Azure**](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)
+Clean Architecture is promoted by Microsoft on their .NET application architecture guide page. The e-book written by Steve "ardalis" Smith ([@ardalis](https://github.com/ardalis)) is beautifully written and well explains the beauty and benefits of using Clean Architecture. For more details, please see [**Architect Modern Web Applications with ASP.NET Core and Azure**](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/).
 
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
 
@@ -22,6 +22,9 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * NSwagStudio is used to generate TypeScript client code to interact with the API.
 * NSwagStudio file is added to the ClientApp project.
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
+
+## System Design Diagram
+<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/System%20Design.jpg" width="800" height="400">
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, or are just forking it to play, please give it a star. Much appreciated! :star: 
