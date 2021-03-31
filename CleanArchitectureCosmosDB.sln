@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureCosmosDB.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6BDAAFF8-8055-41CE-A72C-B37E01E7A84A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureCosmosDB.UnitTests", "tests\CleanArchitectureCosmosDB.UnitTests\CleanArchitectureCosmosDB.UnitTests.csproj", "{910599EC-D9FB-40DD-A9B7-55AB3264D227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureCosmosDB.UnitTests", "tests\CleanArchitectureCosmosDB.UnitTests\CleanArchitectureCosmosDB.UnitTests.csproj", "{910599EC-D9FB-40DD-A9B7-55AB3264D227}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{76C55982-43BD-4A94-B574-1232C4DBD410}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\System Design.jpg = SolutionItems\System Design.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
