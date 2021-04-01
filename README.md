@@ -119,12 +119,11 @@ I have published some short articles to cover different aspects of this project.
 * [How to Auto-create Cosmos DB Database and Containers on App Startup](https://medium.com/swlh/clean-architecture-how-to-auto-create-cosmos-db-database-and-containers-on-app-startup-9dedb6e7adad)
 * [Proper Use of Serilog for Log Stream and Filesystem on Azure App Service](https://shawn-shi.medium.com/proper-use-of-serilog-for-log-stream-and-filesystem-on-azure-app-service-a69e17e54b7b)
 * [Plug-n-Play Azure Blob Storage Service into API using ASP.NET Core in 3 Quick Steps](https://medium.com/swlh/plug-n-play-azure-blob-storage-service-into-api-in-3-quick-steps-468cf39821c6)
-* Specification Pattern with Partitioned Repository Pattern (TODO)
-
 # React SPA 
-* Typescript generation using NSwag Studio based on the Open API specification (Swagger)
-* Material UI DataTable with server side processing
-* (TODO) Upload and download attachment from Azure Blob Storage
+* How to Generate API Client Code Using NSwag With FluentValidation Rules(https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
+* Clean Architecture — Material UI DataTable in React Client App(https://javascript.plainenglish.io/clean-architecture-material-ui-datatable-in-react-client-app-624de7b92088)
+* Specification Pattern with Partitioned Repository Pattern (TODO)
+* Upload and download attachment from Azure Blob Storage (TODO)
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
