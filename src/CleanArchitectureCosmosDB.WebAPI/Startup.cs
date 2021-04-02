@@ -5,6 +5,8 @@ using CleanArchitectureCosmosDB.Core.Interfaces.Storage;
 using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
+using CleanArchitectureCosmosDB.Infrastructure.Identity;
+using CleanArchitectureCosmosDB.Infrastructure.Identity.Models.Authentication;
 using CleanArchitectureCosmosDB.Infrastructure.Services;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services;
@@ -52,6 +54,10 @@ namespace CleanArchitectureCosmosDB.WebAPI
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Authentication and Authorization
+            services.Configure<TokenServiceProvider>(Configuration.GetSection("TokenServiceProvider"));
+            services.Configure<Token>(Configuration.GetSection("token"));
+
             // HttpContextServiceProviderValidatorFactory requires access to HttpContext
             services.AddHttpContextAccessor();
 
