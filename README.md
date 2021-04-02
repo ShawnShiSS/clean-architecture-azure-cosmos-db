@@ -92,7 +92,6 @@ Prerequisites:
 * Unit Test using xUnit
 
 # New Features Under Development
-* System Design diagram (TODO)
 * ASP.NET Core Identity  (TODO)
 * JWT Token (TODO)
 * Refresh Token (TODO)
