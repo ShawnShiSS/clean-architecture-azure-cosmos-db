@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
 {
     /// <summary>
-    ///     A collection of user related services
+    ///     A collection of token related services
     /// </summary>
-    public interface IUserService
+    public interface ITokenService
     {
         /// <summary>
         ///     Validate the credentials entered when logging in.
