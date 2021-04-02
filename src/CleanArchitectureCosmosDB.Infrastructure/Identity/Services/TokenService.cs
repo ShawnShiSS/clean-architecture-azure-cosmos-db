@@ -9,8 +9,8 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
 {
-    /// <inheritdoc cref="IUserService" />
-    public class UserService //: IUserService
+    /// <inheritdoc cref="ITokenService" />
+    public class TokenService //: IUserService
     {
         
     }
