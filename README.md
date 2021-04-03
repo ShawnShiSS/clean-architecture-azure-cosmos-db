@@ -41,7 +41,7 @@ The primary goal of the project is to provide a basic solution structure for any
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
 5. Running the API project will automatically ensure Cosmos DB containers are created and also seed application data. See Startup.cs and DatabaseConfig.cs in API project for details.
-
+6. Running the API project will automatically ensure ASP.NET Core Identity database is created and also seed application user data. See Startup.cs and DatabaseConfig.cs in API project for details.
 
 # Getting Started - Client Application
 Because the client web application is built using React and TypeScript, you need a couple of things below installed on your machine.
