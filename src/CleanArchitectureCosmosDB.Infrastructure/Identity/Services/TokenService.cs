@@ -18,7 +18,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly Token _token;
-        private readonly TokenServiceProvider _tokenServiceProvider;
         private readonly HttpContext _httpContext;
 
         /// <inheritdoc cref="IUserService" />
@@ -32,7 +31,6 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
             _userManager = userManager;
             _signInManager = signInManager;
             _token = tokenOptions.Value;
-            _tokenServiceProvider = tokenServiceProviderOptions.Value;
             _httpContext = httpContextAccessor.HttpContext;
         }
 
@@ -55,8 +53,8 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
 
                     return new TokenResponse(user,
                                              role,
-                                             jwtToken,
-                                             ""//refreshToken.Token
+                                             jwtToken
+                                             //""//refreshToken.Token
                                              );
                 }
             }
