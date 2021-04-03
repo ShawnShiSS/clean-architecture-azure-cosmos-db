@@ -7,7 +7,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity
 {
     /// <summary>
     ///     Config settings for token service provider. 
-    ///     E.g. ASP.NET Core Identity, Identity Server, etc..
+    ///     E.g., application using ASP.NET Core Identity, Identity Server, etc..
     /// </summary>
     public class TokenServiceProvider
     {

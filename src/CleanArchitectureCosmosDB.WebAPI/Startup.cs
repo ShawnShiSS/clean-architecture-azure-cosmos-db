@@ -162,10 +162,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
             {
                 app.UseDeveloperExceptionPage();
 
-                // create CosmosDB database
+                // ONLY automatically create development databases
                 app.EnsureCosmosDbIsCreated();
                 app.SeedToDoContainerIfEmptyAsync().Wait();
                 app.EnsureIdentityDbIsCreated();
+                app.SeedIdentityDataAsync().Wait();
             }
 
             // NSwag Swagger
