@@ -1,9 +1,10 @@
 ﻿using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
+using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions
+namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
 {
     public static class IServiceCollectionExtensions
     {

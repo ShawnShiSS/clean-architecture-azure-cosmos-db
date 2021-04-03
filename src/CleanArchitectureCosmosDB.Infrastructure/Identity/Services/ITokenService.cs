@@ -1,4 +1,5 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.Identity.Models.Authentication;
+﻿using CleanArchitectureCosmosDB.Infrastructure.Identity.Models;
+using CleanArchitectureCosmosDB.Infrastructure.Identity.Models.Authentication;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
@@ -26,5 +27,24 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
         /// </returns>
         Task<TokenResponse> RefreshToken(string refreshToken, string ipAddress);
 
+
+        /// <summary>
+        ///     Check if the credentials passed in are valid.
+        /// </summary>
+        /// <param name="username">The username to check.</param>
+        /// <param name="password">The matching password to verify.</param>
+        /// <returns>If the credentials are valid or not.</returns>
+        Task<bool> IsValidUser(string username, string password);
+
+        /// <summary>
+        ///     Find an <see cref="ApplicationUser" /> by their email.
+        /// </summary>
+        /// <param name="email">
+        ///     <see cref="ApplicationUser.Email" />
+        /// </param>
+        /// <returns>
+        ///     <see cref="ApplicationUser" />
+        /// </returns>
+        Task<ApplicationUser> GetUserByEmail(string email);
     }
 }
