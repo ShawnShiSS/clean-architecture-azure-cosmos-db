@@ -7,7 +7,9 @@ using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
 using CleanArchitectureCosmosDB.Infrastructure.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.Identity;
 using CleanArchitectureCosmosDB.Infrastructure.Identity.Models.Authentication;
+using CleanArchitectureCosmosDB.Infrastructure.Identity.Services;
 using CleanArchitectureCosmosDB.Infrastructure.Services;
+using CleanArchitectureCosmosDB.WebAPI.Config;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters;
 using CleanArchitectureCosmosDB.WebAPI.Infrastructure.Services;
 using FluentValidation;
@@ -58,6 +60,11 @@ namespace CleanArchitectureCosmosDB.WebAPI
             services.Configure<TokenServiceProvider>(Configuration.GetSection("TokenServiceProvider"));
             services.Configure<Token>(Configuration.GetSection("token"));
 
+            // Cosmos DB for application data
+            services.SetupCosmosDb(Configuration);
+            // Identity DB for Identity
+            services.SetupIdentityDatabase(Configuration);
+
             // HttpContextServiceProviderValidatorFactory requires access to HttpContext
             services.AddHttpContextAccessor();
 
@@ -70,20 +77,10 @@ namespace CleanArchitectureCosmosDB.WebAPI
             // Fluent Validation, this will scan and register everything that inherits FluentValidation.AbstractValidator
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // Bind database-related bindings
-            CosmosDbSettings cosmosDbConfig = Configuration.GetSection("ConnectionStrings:CleanArchitectureCosmosDB").Get<CosmosDbSettings>();
-            // register CosmosDB client and data repositories
-            services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
-                                 cosmosDbConfig.PrimaryKey,
-                                 cosmosDbConfig.DatabaseName,
-                                 cosmosDbConfig.Containers);
-            services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
-
+            // TODO : move lines below into cache config
             // Non-distributed in-memory cache services
             services.AddMemoryCache();
             services.AddScoped<ICachedToDoItemsService, InMemoryCachedToDoItemsService>();
-            services.AddScoped<IAuditRepository, AuditRepository>();
-
 
             // API controllers
             services.AddControllers(options =>
