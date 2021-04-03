@@ -24,7 +24,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
 
 ## System Design Diagram
-<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/System%20Design.jpg" width="860" height="360">
+<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/SystemDesign.jpg" width="100%">
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, or are just forking it to play, please give it a star. Much appreciated! :star: 
