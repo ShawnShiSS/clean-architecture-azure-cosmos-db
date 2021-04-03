@@ -1,7 +1,7 @@
 ﻿using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
-using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository;
+using CleanArchitectureCosmosDB.Infrastructure.Extensions;
 using CleanArchitectureCosmosDB.Infrastructure.Services;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;

@@ -29,4 +29,8 @@
     <ProjectReference Include="..\CleanArchitectureCosmosDB.Core\CleanArchitectureCosmosDB.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CosmosDbData\Extensions\" />
+  </ItemGroup>
+
 </Project>
