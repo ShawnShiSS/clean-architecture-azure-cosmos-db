@@ -14,7 +14,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Seed
             await roleManager.CreateAsync(new IdentityRole(ApplicationIdentityConstants.Roles.Member));
 
             // New admin user
-            string adminUserName = "admin@test.com";
+            string adminUserName = "shawn@test.com";
             var adminUser = new ApplicationUser { 
                 UserName = adminUserName,
                 Email = adminUserName,
