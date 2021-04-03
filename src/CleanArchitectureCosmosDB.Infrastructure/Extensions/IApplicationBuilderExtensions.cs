@@ -1,6 +1,7 @@
 ﻿using CleanArchitectureCosmosDB.Core.Entities;
 using CleanArchitectureCosmosDB.Core.Interfaces;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
+using CleanArchitectureCosmosDB.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -56,6 +57,22 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
                         await _repo.AddItemAsync(beer);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        ///     Create Identity DB if not exist
+        /// </summary>
+        /// <param name="builder"></param>
+        public static void EnsureIdentityDbIsCreated(this IApplicationBuilder builder)
+        {
+            using (var serviceScope = builder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var services = serviceScope.ServiceProvider;
+
+                var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                // Ensure the database is created.
+                dbContext.Database.EnsureCreated();
             }
         }
     }

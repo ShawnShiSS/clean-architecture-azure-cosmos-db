@@ -168,6 +168,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
                 // create CosmosDB database
                 app.EnsureCosmosDbIsCreated();
                 app.SeedToDoContainerIfEmptyAsync().Wait();
+                app.EnsureIdentityDbIsCreated();
             }
 
             // NSwag Swagger
