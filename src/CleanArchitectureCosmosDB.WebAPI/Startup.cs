@@ -166,8 +166,8 @@ namespace CleanArchitectureCosmosDB.WebAPI
                 app.EnsureCosmosDbIsCreated();
                 app.SeedToDoContainerIfEmptyAsync().Wait();
                 // Optional: auto-create and seed Identity DB
-                //app.EnsureIdentityDbIsCreated();
-                //app.SeedIdentityDataAsync().Wait();
+                app.EnsureIdentityDbIsCreated();
+                app.SeedIdentityDataAsync().Wait();
             }
 
             // NSwag Swagger
