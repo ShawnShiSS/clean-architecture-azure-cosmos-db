@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
 {
     /// <summary>
-    ///     IApplicationBuilderExtensions 
+    ///     Extension methods for IApplicationBuilder 
     /// </summary>
     public static class IApplicationBuilderExtensions
     {
