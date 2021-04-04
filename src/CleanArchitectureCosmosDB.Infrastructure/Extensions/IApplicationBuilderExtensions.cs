@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
 {
     /// <summary>
-    ///     IApplicationBuilderExtensions 
+    ///     Extension methods for IApplicationBuilder 
     /// </summary>
     public static class IApplicationBuilderExtensions
     {
@@ -72,7 +72,9 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
                 var services = serviceScope.ServiceProvider;
 
                 var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                
                 // Ensure the database is created.
+                // Note this does not use migrations. If database may be updated using migrations, use DbContext.Database.Migrate() instead.
                 dbContext.Database.EnsureCreated();
             }
         }

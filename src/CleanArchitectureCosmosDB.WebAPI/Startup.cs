@@ -56,7 +56,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            // Authentication and Authorization
+            // Strongly-typed configurations using IOptions
             services.Configure<TokenServiceProvider>(Configuration.GetSection("TokenServiceProvider"));
             services.Configure<Token>(Configuration.GetSection("token"));
 
@@ -65,7 +65,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
             // Identity DB for Identity
             services.SetupIdentityDatabase(Configuration);
 
-            // HttpContextServiceProviderValidatorFactory requires access to HttpContext
+            // HttpContext
             services.AddHttpContextAccessor();
 
             // AutoMapper, this will scan and register everything that inherits AutoMapper.Profile

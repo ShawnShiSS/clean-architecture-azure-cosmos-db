@@ -20,12 +20,11 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Identity.Services
         private readonly Token _token;
         private readonly HttpContext _httpContext;
 
-        /// <inheritdoc cref="IUserService" />
+        /// <inheritdoc cref="ITokenService" />
         public TokenService(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<Token> tokenOptions,
-            IOptions<TokenServiceProvider> tokenServiceProviderOptions,
             IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;

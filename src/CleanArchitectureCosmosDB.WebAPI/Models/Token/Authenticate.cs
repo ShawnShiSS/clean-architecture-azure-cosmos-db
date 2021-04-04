@@ -21,7 +21,6 @@ namespace CleanArchitectureCosmosDB.WebAPI.Models.Token
         /// </summary>
         public class AuthenticateCommand : TokenRequest, IRequest<CommandResponse>
         {
-            
         }
 
         /// <summary>

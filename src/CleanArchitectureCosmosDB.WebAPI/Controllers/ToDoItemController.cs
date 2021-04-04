@@ -3,6 +3,7 @@ using CleanArchitectureCosmosDB.WebAPI.Models.Shared;
 using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
 using MediatR;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
