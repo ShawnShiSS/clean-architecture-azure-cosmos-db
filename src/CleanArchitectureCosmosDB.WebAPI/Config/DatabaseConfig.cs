@@ -37,7 +37,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Config
         }
 
         /// <summary>
-        ///     Identity DB
+        ///     Setup ASP.NET Core Identity DB, including connection string, Identity options, token providers, and token services, etc..
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
