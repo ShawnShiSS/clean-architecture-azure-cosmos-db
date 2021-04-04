@@ -165,6 +165,7 @@ namespace CleanArchitectureCosmosDB.WebAPI
                 // ONLY automatically create development databases
                 app.EnsureCosmosDbIsCreated();
                 app.SeedToDoContainerIfEmptyAsync().Wait();
+                // Optional: auto-create and seed Identity DB
                 app.EnsureIdentityDbIsCreated();
                 app.SeedIdentityDataAsync().Wait();
             }

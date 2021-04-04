@@ -24,7 +24,7 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
 
 ## System Design Diagram
-<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/System%20Design.jpg" width="860" height="360">
+<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/SystemDesign.jpg" width="100%">
 
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, or are just forking it to play, please give it a star. Much appreciated! :star: 
@@ -40,6 +40,8 @@ The primary goal of the project is to provide a basic solution structure for any
 2. Start the emulator
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
+5. Running the API project will automatically ensure Cosmos DB containers are created and also seed application data. See Startup.cs and DatabaseConfig.cs in API project for details.
+6. Running the API project will automatically ensure ASP.NET Core Identity database is created and also seed application user data. See Startup.cs and DatabaseConfig.cs in API project for details.
 
 # Getting Started - Client Application
 Because the client web application is built using React and TypeScript, you need a couple of things below installed on your machine.

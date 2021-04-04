@@ -44,8 +44,10 @@ namespace CleanArchitectureCosmosDB.WebAPI.Config
         public static void SetupIdentityDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options
-                    .UseSqlServer(configuration.GetConnectionString("CleanArchitectureIdentity")));
+                //options.UseSqlServer(configuration.GetConnectionString("CleanArchitectureIdentity"))
+                options.UseInMemoryDatabase("CleanArchitectureIdentity")
+                );
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddDefaultTokenProviders()
                     .AddUserManager<UserManager<ApplicationUser>>()
