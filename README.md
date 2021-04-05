@@ -23,6 +23,9 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * NSwagStudio file is added to the ClientApp project.
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
 
+**(NEW) Token Service Provider**
+* Custom token service provider using ASP.NET Core Identity and SQL Server.
+
 ## System Design Diagram
 <img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/SystemDesign.jpg" width="100%">
 
@@ -66,7 +69,8 @@ Prerequisites:
 * Horizontal Partitioning
 * Partition Key Design
 * REST API
-* Swagger UI
+* Custom Token Service Provider using ASP.NET Core Identity
+* Swagger UI with bearer authorization header support
 * OData support
 * IMemoryCache Cache service (Non-distributed in-memory cache)
 * Serilog for structured logging
@@ -94,8 +98,6 @@ Prerequisites:
 * Unit Test using xUnit
 
 # New Features Under Development
-* ASP.NET Core Identity  (TODO)
-* JWT Token (TODO)
 * Refresh Token (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
