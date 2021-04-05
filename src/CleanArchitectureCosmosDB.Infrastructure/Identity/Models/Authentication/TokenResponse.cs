@@ -4,8 +4,8 @@
     {
         public TokenResponse(ApplicationUser user, 
                              string role, 
-                             string token,
-                             string refreshToken
+                             string token
+                             //string refreshToken
                             )
         {
             Id = user.Id;
@@ -13,7 +13,7 @@
             EmailAddress = user.Email;
             Token = token;
             Role = role;
-            RefreshToken = refreshToken;
+            //RefreshToken = refreshToken;
         }
 
         public string Id { get; set; }
@@ -23,6 +23,6 @@
         public string Role { get; set; }
 
         //[JsonIgnore]
-        public string RefreshToken { get; set; }
+        //public string RefreshToken { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using CleanArchitectureCosmosDB.WebAPI.Models.Shared;
 using CleanArchitectureCosmosDB.WebAPI.Models.ToDoItem;
 using MediatR;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
     /// <summary>
     ///     ToDoItem Controller
     /// </summary>
+    [Authorize("Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class ToDoItemController : ControllerBase
@@ -35,7 +37,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [EnableQuery()]
+        [EnableQuery]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {

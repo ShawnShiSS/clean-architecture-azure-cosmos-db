@@ -3,7 +3,7 @@ This solution provides a starting point to build a web API to work with Azure Co
 * Partition key is also implemented through the repository pattern in order to support large scale Cosmos DB.
 * A RESTful API application is created with popular architecture features (see full list below).
 
-Clean Architecture is promoted by Microsoft on their .NET application architecture guide page. The e-book written by Steve "ardalis" Smith ([@ardalis](https://github.com/ardalis)) is beautifully written and well explains the beauty and benefits of using Clean Architecture. For more details, please see [**Architect Modern Web Applications with ASP.NET Core and Azure**](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)
+Clean Architecture is promoted by Microsoft on their .NET application architecture guide page. The e-book written by Steve "ardalis" Smith ([@ardalis](https://github.com/ardalis)) is beautifully written and well explains the beauty and benefits of using Clean Architecture. For more details, please see [**Architect Modern Web Applications with ASP.NET Core and Azure**](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/).
 
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
 
@@ -23,6 +23,12 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 * NSwagStudio file is added to the ClientApp project.
 * FluentValidation is registered to define validation rules in Swagger/OpenAPI schema
 
+**(NEW) Token Service Provider**
+* Custom token service provider using ASP.NET Core Identity and SQL Server.
+
+## System Design Diagram
+<img src="https://github.com/ShawnShiSS/clean-architecture-azure-cosmos-db/blob/master/SolutionItems/SystemDesign.jpg" width="100%">
+
 # Give a star
 :star: If you enjoy this project, or are using this project to start your exciting new project, or are just forking it to play, please give it a star. Much appreciated! :star: 
 
@@ -37,6 +43,8 @@ The primary goal of the project is to provide a basic solution structure for any
 2. Start the emulator
 3. Set the API project as your Startup project in Visual Studio
 4. The swagger UI page should be loaded at: https://localhost:5001/swagger/index.html
+5. Running the API project will automatically ensure Cosmos DB containers are created and also seed application data. See Startup.cs and DatabaseConfig.cs in API project for details.
+6. Running the API project will automatically ensure ASP.NET Core Identity database is created and also seed application user data. See Startup.cs and DatabaseConfig.cs in API project for details.
 
 # Getting Started - Client Application
 Because the client web application is built using React and TypeScript, you need a couple of things below installed on your machine.
@@ -61,7 +69,8 @@ Prerequisites:
 * Horizontal Partitioning
 * Partition Key Design
 * REST API
-* Swagger UI
+* Custom Token Service Provider using ASP.NET Core Identity
+* Swagger UI with bearer authorization header support
 * OData support
 * IMemoryCache Cache service (Non-distributed in-memory cache)
 * Serilog for structured logging
@@ -86,13 +95,14 @@ Prerequisites:
 * Material UI DataTable in React Client App
 * Client side validation using Formik and Yup in React Client App
 * Map and render server-side errors in React Client App
+* Unit Test using xUnit
 
 # New Features Under Development
-* ASP.NET Core Identity  (TODO)
-* JWT Token (TODO)
 * Refresh Token (TODO)
 * Cosmos DB Change Feed (TODO)
 * Cosmos DB Stored Procedure for Transaction (TODO)
+* Complex search specification for Cosmos DB (TODO)
+* Message Queue (TODO)
 * other TODOs
 
 # Additional Resources
@@ -112,12 +122,10 @@ I have published some short articles to cover different aspects of this project.
 * [How to Auto-create Cosmos DB Database and Containers on App Startup](https://medium.com/swlh/clean-architecture-how-to-auto-create-cosmos-db-database-and-containers-on-app-startup-9dedb6e7adad)
 * [Proper Use of Serilog for Log Stream and Filesystem on Azure App Service](https://shawn-shi.medium.com/proper-use-of-serilog-for-log-stream-and-filesystem-on-azure-app-service-a69e17e54b7b)
 * [Plug-n-Play Azure Blob Storage Service into API using ASP.NET Core in 3 Quick Steps](https://medium.com/swlh/plug-n-play-azure-blob-storage-service-into-api-in-3-quick-steps-468cf39821c6)
+* [How to Generate API Client Code Using NSwag With FluentValidation Rules](https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
+* [Clean Architecture — Material UI DataTable in React Client App](https://javascript.plainenglish.io/clean-architecture-material-ui-datatable-in-react-client-app-624de7b92088)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
-
-# React SPA 
-* Typescript generation using NSwag Studio based on the Open API specification (Swagger)
-* Material UI DataTable with server side processing
-* (TODO) Upload and download attachment from Azure Blob Storage
+* Upload and download attachment from Azure Blob Storage (TODO)
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
