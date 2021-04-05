@@ -10,6 +10,6 @@
             public static readonly string[] RolesSupported = { Administrator, Member };
         }
 
-        public static readonly string DefaultPassword = "Pass@word1";
+        public static readonly string DefaultPassword = "Password@1";
     }
 }
