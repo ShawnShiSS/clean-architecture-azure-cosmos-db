@@ -37,7 +37,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [AllowAnonymous]
+        [EnableQuery]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {
