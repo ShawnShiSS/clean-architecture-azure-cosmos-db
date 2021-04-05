@@ -14,6 +14,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
     /// <summary>
     ///     ToDoItem Controller
     /// </summary>
+    [Authorize("Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class ToDoItemController : ControllerBase
@@ -36,7 +37,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [EnableQuery()]
+        [AllowAnonymous]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<IEnumerable<ToDoItemModel>> GetAll()
         {
