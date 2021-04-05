@@ -1,7 +1,11 @@
-﻿using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
+﻿using CleanArchitectureCosmosDB.Core.Interfaces.Storage;
+using CleanArchitectureCosmosDB.Infrastructure.AppSettings;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData;
 using CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Interfaces;
+using CleanArchitectureCosmosDB.Infrastructure.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Storage.Net;
 using System.Collections.Generic;
 
 namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
@@ -32,6 +36,23 @@ namespace CleanArchitectureCosmosDB.Infrastructure.Extensions
             services.AddSingleton<ICosmosDbContainerFactory>(cosmosDbClientFactory);
 
             return services;
+        }
+
+        /// <summary>
+        ///     Setup Azure Blob storage
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static void SetupStorage(this IServiceCollection services, IConfiguration configuration)
+        {
+            StorageFactory.Modules.UseAzureBlobStorage();
+
+            // Register IBlobStorage, which is used in AzureBlobStorageService
+            // Avoid using IBlobStorage directly outside of AzureBlobStorageService.
+            services.AddScoped<Storage.Net.Blobs.IBlobStorage>(
+                factory => StorageFactory.Blobs.FromConnectionString(configuration.GetConnectionString("StorageConnectionString")));
+
+            services.AddScoped<IStorageService, AzureBlobStorageService>();
         }
 
     }
