@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Behaviours
 {
     /// <summary>
-    ///     MediatR Pipeline behavior to run validation logic before the handlers handle the request.
+    ///     MediatR pipeline behavior to run validation logic before the handlers handle the request.
+    ///     For more information: https://github.com/jbogard/MediatR/wiki/Behaviors
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>
