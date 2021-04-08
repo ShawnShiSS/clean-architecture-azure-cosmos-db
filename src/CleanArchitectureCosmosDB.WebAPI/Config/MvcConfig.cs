@@ -37,7 +37,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Config
                     })
                     .AddMvcOptions(options =>
                     {
-                        // Clear the default MVC model validations, as we are registering all model validators using FluentValidation
+                        // Clear the default MVC model binding and model validations, as we are registering all model binding and validation using FluentValidation.
+                        // See ApiExceptionFilterAttribute.cs
                         // https://github.com/jasontaylordev/NorthwindTraders/issues/76
                         options.ModelMetadataDetailsProviders.Clear();
                         options.ModelValidatorProviders.Clear();

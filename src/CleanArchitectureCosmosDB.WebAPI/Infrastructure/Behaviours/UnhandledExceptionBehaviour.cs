@@ -4,12 +4,13 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.ApiExceptions
+namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Behaviours
 {
     /// <summary>
-    ///     MediatR pipeline - Unhandled exception
+    ///     MediatR pipeline behavior to handle any unhandled exception.
+    ///     For more information: https://github.com/jbogard/MediatR/wiki/Behaviors
     /// </summary>
-    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TRequest">The request object passed in through IMediator.Send.</typeparam>
     /// <typeparam name="TResponse"></typeparam>
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
@@ -23,9 +24,9 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.ApiExceptions
         /// <summary>
         ///     
         /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <param name="next"></param>
+        /// <param name="request">The request object passed in through IMediator.Send.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="next">An async continuation for the next action in the behavior chain.</param>
         /// <returns></returns>
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
