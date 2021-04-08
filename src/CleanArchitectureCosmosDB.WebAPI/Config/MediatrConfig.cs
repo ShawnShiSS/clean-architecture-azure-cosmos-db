@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace CleanArchitectureCosmosDB.WebAPI.Config
 {
@@ -19,10 +15,12 @@ namespace CleanArchitectureCosmosDB.WebAPI.Config
         /// <param name="services"></param>
         public static void SetupMediatr(this IServiceCollection services)
         {
-            // MediatR, this will scan and register everything that inherits IRequest, IPipelineBehavior
+            // MediatR, this will scan and register everything that inherits IRequest
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            // Register MediatR pipeline behaviors, in the same order the behaviors should be called.
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.Behaviours.ValidationBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.ApiExceptions.UnhandledExceptionBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Infrastructure.Behaviours.UnhandledExceptionBehaviour<,>));
         }
     }
 }

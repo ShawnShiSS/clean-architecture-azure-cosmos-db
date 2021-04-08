@@ -10,7 +10,9 @@ using System.Collections.Generic;
 namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 {
     /// <summary>
-    ///     API exception filter
+    ///     API exception filter.
+    ///     For more details on how error result should be returned,
+    ///     see https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-5.0#problem-details-for-error-status-codes
     /// </summary>
     public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
@@ -25,6 +27,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
+                { typeof(ApiModelValidationException), HandleValidationException },
                 { typeof(EntityNotFoundException), HandleNotFoundException },
                 { typeof(EntityAlreadyExistsException), HandleAlreadyExistsException },
             };
@@ -52,6 +55,12 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
                 return;
             }
 
+            // Model state represents errors that come from two subsystems: model binding and model validation.
+            // Errors that originate from model binding are generally data conversion errors.
+            // Model validation occurs after model binding and reports errors where data doesn't conform to business rules.
+            // Both model binding and model validation occur before the execution of a controller action handler method.
+            // Web API controllers don't have to check ModelState.IsValid if they have the [ApiController] attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid.
+            // This is still added here in case we no longer clear the default MVC model validators.
             if (!context.ModelState.IsValid)
             {
                 HandleInvalidModelStateException(context);
@@ -80,6 +89,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
         private void HandleValidationException(ExceptionContext context)
         {
+            // MS reference: https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-5.0#automatic-http-400-responses
             ApiModelValidationException exception = context.Exception as ApiModelValidationException;
 
             ValidationProblemDetails details = new ValidationProblemDetails(exception.Errors)
