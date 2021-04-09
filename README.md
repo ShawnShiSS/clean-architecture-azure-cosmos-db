@@ -73,7 +73,7 @@ Prerequisites:
 * OData support
 * IMemoryCache Cache service (Non-distributed in-memory cache)
 * Serilog for structured logging
-* MediatR Command/Query pattern
+* Command Query Responsibility Segregation (CQRS) pattern using MediatR
 * MediatR pipeline behaviour for exception handling 
 * FluentValidation for model validation (with support for database query)
 * FluentValidation to define validation rules in Swagger Schema
