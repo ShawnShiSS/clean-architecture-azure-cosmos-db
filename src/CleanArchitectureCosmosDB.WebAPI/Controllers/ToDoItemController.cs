@@ -14,7 +14,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
     /// <summary>
     ///     ToDoItem Controller
     /// </summary>
-    [Authorize("Bearer")]
+    //[Authorize("Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class ToDoItemController : ControllerBase

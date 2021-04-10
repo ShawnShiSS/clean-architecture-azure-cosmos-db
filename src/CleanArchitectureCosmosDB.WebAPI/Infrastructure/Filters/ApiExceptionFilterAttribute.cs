@@ -59,7 +59,8 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
             // Errors that originate from model binding are generally data conversion errors.
             // Model validation occurs after model binding and reports errors where data doesn't conform to business rules.
             // Both model binding and model validation occur before the execution of a controller action handler method.
-            // Web API controllers don't have to check ModelState.IsValid if they have the [ApiController] attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid.
+            // Web API controllers don't have to check ModelState.IsValid if they have the [ApiController] attribute.
+            // In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid.
             // This is still added here in case we no longer clear the default MVC model validators.
             if (!context.ModelState.IsValid)
             {
