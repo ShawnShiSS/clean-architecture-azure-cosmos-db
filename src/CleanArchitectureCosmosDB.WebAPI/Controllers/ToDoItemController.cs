@@ -60,18 +60,6 @@ namespace CleanArchitectureCosmosDB.WebAPI.Controllers
             return response.Resource;
         }
 
-        // GET: api/ToDoItem/TestException
-        /// <summary>
-        ///     Get a test exception
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetTestException")]
-        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-        public Task<IActionResult> GetTestException()
-        {
-            throw new EntityAlreadyExistsException();
-        }
-
         // POST: api/ToDoItem
         /// <summary>
         ///     Create 
