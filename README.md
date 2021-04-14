@@ -34,9 +34,8 @@ This project uses the newer Cosmos DB .NET SDK V3, because it adds support for s
 
 # Goals
 The primary goal of the project is to provide a basic solution structure for anyone who is building a new ASP.NET Core web or API project using Cosmos DB.
-**Please watch for this repository to get notification when I make updates to the repo.**
 
-**For a detailed discussion, please see my recent article, Clean Architecture — ASP.NET Core API using Partitioned Repository Pattern and Azure Cosmos DB** (link: https://medium.com/swlh/clean-architecture-with-partitioned-repository-pattern-using-azure-cosmos-db-62241854cbc5)
+**For a detailed introduction, please see my recent article, [Clean Architecture — ASP.NET Core API using Partitioned Repository Pattern and Azure Cosmos DB](https://medium.com/swlh/clean-architecture-with-partitioned-repository-pattern-using-azure-cosmos-db-62241854cbc5).**
 
 # Getting Started - API
 1. Download the Azure CosmosDB emulator in order to run the API project locally. Here is a download link: https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-release-notes#download.
@@ -74,7 +73,7 @@ Prerequisites:
 * OData support
 * IMemoryCache Cache service (Non-distributed in-memory cache)
 * Serilog for structured logging
-* MediatR Command/Query pattern
+* Command Query Responsibility Segregation (CQRS) pattern using MediatR
 * MediatR pipeline behaviour for exception handling 
 * FluentValidation for model validation (with support for database query)
 * FluentValidation to define validation rules in Swagger Schema
