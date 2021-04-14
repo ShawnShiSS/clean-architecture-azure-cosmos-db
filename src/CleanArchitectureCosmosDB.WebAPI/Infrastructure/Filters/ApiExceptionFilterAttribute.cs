@@ -30,6 +30,7 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
                 { typeof(ApiModelValidationException), HandleValidationException },
                 { typeof(EntityNotFoundException), HandleNotFoundException },
                 { typeof(EntityAlreadyExistsException), HandleAlreadyExistsException },
+                { typeof(InvalidCredentialsException), HandleInvalidCredentialsException },
             };
         }
 
@@ -137,12 +138,30 @@ namespace CleanArchitectureCosmosDB.WebAPI.Infrastructure.Filters
 
             ProblemDetails details = new ProblemDetails()
             {
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-                Title = "The specified resource already exists.",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Title = "The specified resource already exists."
+                //Detail = exception.Message
+            };
+
+            // This can also be 409 Conflict result:
+            // https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.conflictobjectresult?view=aspnetcore-5.0
+            context.Result = new BadRequestObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleInvalidCredentialsException(ExceptionContext context)
+        {
+            var exception = context.Exception as InvalidCredentialsException;
+
+            var details = new ProblemDetails()
+            {
+                Type = "https://tools.ietf.org/html/rfc7235#section-3.1",
+                Title = "Invalid Username and/or Password.",
                 Detail = exception.Message
             };
 
-            context.Result = new NotFoundObjectResult(details);
+            context.Result = new UnauthorizedObjectResult(details);
 
             context.ExceptionHandled = true;
         }
