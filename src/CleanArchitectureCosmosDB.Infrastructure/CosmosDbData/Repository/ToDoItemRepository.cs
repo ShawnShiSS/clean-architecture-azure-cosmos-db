@@ -42,7 +42,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
 
             QueryDefinition queryDefinition = new QueryDefinition(query)
                                                     .WithParameter("@Category", category);
-            string queryString = queryDefinition.ToString();
+            string queryString = queryDefinition.QueryText;
 
             IEnumerable<ToDoItem> entities = await this.GetItemsAsync(queryString);
 
@@ -58,7 +58,7 @@ namespace CleanArchitectureCosmosDB.Infrastructure.CosmosDbData.Repository
 
             QueryDefinition queryDefinition = new QueryDefinition(query)
                                                     .WithParameter("@Title", title);
-            string queryString = queryDefinition.ToString();
+            string queryString = queryDefinition.QueryText;
 
             IEnumerable<ToDoItem> entities = await this.GetItemsAsync(queryString);
 
