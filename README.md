@@ -125,6 +125,7 @@ I have published some short articles to cover different aspects of this project.
 * [Clean Architecture — Material UI DataTable in React Client App](https://javascript.plainenglish.io/clean-architecture-material-ui-datatable-in-react-client-app-624de7b92088)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 * Upload and download attachment from Azure Blob Storage (TODO)
+* IoT Solution — Smart Home System using Azure Cosmos DB (TODO)
 
 # Acknowledgement
 Special thanks to Steve Smith ([@ardalis](https://github.com/ardalis)) for sharing the CleanArchitecture repository and the e-book. I absolutely love it!
