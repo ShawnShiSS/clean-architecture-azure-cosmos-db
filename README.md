@@ -123,7 +123,7 @@ I have published some short articles to cover different aspects of this project.
 * [Plug-n-Play Azure Blob Storage Service into API using ASP.NET Core in 3 Quick Steps](https://medium.com/swlh/plug-n-play-azure-blob-storage-service-into-api-in-3-quick-steps-468cf39821c6)
 * [How to Generate API Client Code Using NSwag With FluentValidation Rules](https://medium.com/swlh/how-to-generate-api-client-code-using-nswag-with-fluentvalidation-rules-9428ae65c10e)
 * [Clean Architecture — Material UI DataTable in React Client App](https://javascript.plainenglish.io/clean-architecture-material-ui-datatable-in-react-client-app-624de7b92088)
-* IoT Solution — For Smart Home Telemetry Data using Azure Cosmos DB (https://medium.com/geekculture/iot-solution-smart-home-system-using-azure-cosmos-db-ae4fca275ec7)
+* [IoT Solution — For Smart Home Telemetry Data using Azure Cosmos DB](https://medium.com/geekculture/iot-solution-smart-home-system-using-azure-cosmos-db-ae4fca275ec7)
 * Specification Pattern with Partitioned Repository Pattern (TODO)
 * Upload and download attachment from Azure Blob Storage (TODO)
 
