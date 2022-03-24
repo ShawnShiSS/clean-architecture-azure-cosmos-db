@@ -102,6 +102,7 @@ Prerequisites:
 * Cosmos DB Stored Procedure for Transaction (TODO)
 * Complex search specification for Cosmos DB (TODO)
 * Message Queue (TODO)
+* Secure secrets in appsettings.json using Azure Key Vault (TODO)
 * other TODOs
 
 # Additional Resources
