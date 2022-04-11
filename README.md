@@ -1,8 +1,5 @@
 # Clean Architecture with partitioned repository pattern using Azure Cosmos DB
-
-## UPDATE: all projects in this soluction have been updated to .NET 5. Azure Functions project is updated to the newest v4.
-
-This solution provides a starting point to build a web API to work with Azure Cosmos DB using ASP.NET Core and Azure Cosmos DB .NET V5, based on Clean Architecture and repository design pattern. 
+This solution provides a starting point to build a web API to work with Azure Cosmos DB using .NET 5 and Azure Cosmos DB .NET V3, based on Clean Architecture and repository design pattern. 
 * Partition key is also implemented through the repository pattern in order to support large scale Cosmos DB.
 * A RESTful API application is created with popular architecture features (see full list below).
 
@@ -10,6 +7,7 @@ Clean Architecture is promoted by Microsoft on their .NET application architectu
 
 This project uses the newer Cosmos DB .NET SDK V3, because it adds support for stream APIs and Cosmos DB Change Feed processor APIs, as well as performance improvements.
 
+**UPDATE: all projects in this soluction have been updated to .NET 5. Azure Functions project is updated to the newest v4.**
 
 **(NEW) Azure Functions starter project**
 * An Azure Functions project is also created with popular architecture features (see full list below), in order to demonstrate how it can be used as a serverless computer service to work with Cosmos DB.
