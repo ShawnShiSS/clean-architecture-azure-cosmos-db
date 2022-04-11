@@ -1,5 +1,5 @@
 # Clean Architecture with partitioned repository pattern using Azure Cosmos DB
-This solution provides a starting point to build a web API to work with Azure Cosmos DB using .NET 5 and Azure Cosmos DB .NET V3, based on Clean Architecture and repository design pattern. 
+This solution provides a starting point to build a web API to work with Azure Cosmos DB using **.NET 5** and Azure Cosmos DB .NET V3, based on Clean Architecture and repository design pattern. 
 * Partition key is also implemented through the repository pattern in order to support large scale Cosmos DB.
 * A RESTful API application is created with popular architecture features (see full list below).
 
